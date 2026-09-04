@@ -119,7 +119,7 @@
     </q-page-container>
 
     <!-- Footer mimicking the 3-column layout -->
-    <q-footer reveal reveal-offset="1" class="bg-grey-10 text-grey-4 q-pa-xl">
+    <q-footer v-model="showFooter" class="bg-grey-10 text-grey-4 q-pa-xl transition-footer ">
       <div class="row q-col-gutter-lg">
         <!-- Column 1 -->
         <div class="col-12 col-md-4">
@@ -191,5 +191,22 @@
 </style>
 
 <script setup>
-  
+import { ref, onMounted, onUnmounted } from 'vue'
+
+const showFooter = ref(false)
+const scrollThreshold = 500 // Pixels to scroll before showing footer
+
+const handleScroll = () => {
+  // Checks how far the user has scrolled down
+  const scrollTop = window.scrollY || document.documentElement.scrollTop
+  showFooter.value = scrollTop > scrollThreshold
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
 </script>
