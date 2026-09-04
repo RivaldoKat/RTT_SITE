@@ -1,11 +1,11 @@
 <template>
-  <div class="q-pa-md">
+  <div>
     <q-carousel
       animated
       v-model="slide"
-      height="500px"
-      navigation
+      height="620px"
       infinite
+      control-text-color="red"
       :autoplay="autoplay"
       arrows
       transition-prev="slide-right"
@@ -13,26 +13,26 @@
       @mouseenter="autoplay = false"
       @mouseleave="autoplay = true"
     >
-      <q-carousel-slide :name="1" img-src="/src/assets/ViewsOne.jpg">
-        <div class="caption-container">
-          <div class="caption-text text-h4 text-white">First stop</div>
+      <q-carousel-slide class="no-padding" :name="1" img-src="/src/assets/ViewsOne.jpg">
+        <div class="absolute-bottom custom-caption">
+          <div class="text-h2 text-white">First stop</div>
           <div class="caption-subtext text-subtitle1 text-grey-3">Mountains</div>
         </div>
       </q-carousel-slide>
       <q-carousel-slide :name="2" img-src="/src/assets/ViewsThree.jpg">
-        <div class="caption-container">
-          <div class="caption-text text-h4 text-white">Second stop</div>
+        <div class="absolute-bottom custom-caption">
+          <div class="text-h4 text-white">Second stop</div>
           <div class="caption-subtext text-subtitle1 text-grey-3">Famous City</div>
         </div>
       </q-carousel-slide>
       <q-carousel-slide :name="3" img-src="/src/assets/ViewsTwo.jpeg">
-        <div class="caption-container">
+        <div class="absolute-bottom custom-caption">
           <div class="caption-text text-h4 text-white">Third stop</div>
           <div class="caption-subtext text-subtitle1 text-grey-3">Famous Bridge</div>
         </div>
       </q-carousel-slide>
       <q-carousel-slide :name="4" img-src="/src/assets/ViewsOne.jpg">
-        <div class="caption-container">
+        <div class="absolute-bottom custom-caption">
           <div class="caption-text text-h4 text-white">Fourth stop</div>
           <div class="caption-subtext text-subtitle1 text-grey-3">Quasar Framework</div>
         </div>
@@ -41,7 +41,7 @@
   </div>
 
   <!-- HERO SECTION WRAPPER -->
-  <div class="hero-section">
+  <div class="hero-section q-pa-md" >
     <!-- Clean, independent dark background block -->
     <div class="hero-bg"></div>
 
@@ -85,7 +85,9 @@
       </div>
 
     </div>
+    
   </div>
+  
 </template>
 
 <script setup>
@@ -96,6 +98,17 @@ const autoplay = ref(true)
 </script>
 
 <style scoped>
+/* Carousel Styles */
+.custom-caption{
+  text-align: center;
+  padding: 12px;
+  color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, .3);
+  }
+ 
+
+
+/* HERO SECTION STYLES */
 .hero-section {
   position: relative;
   width: 100%;

@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh lpr lFf">
-    <q-header reveal reveal-offset="10" elevated >
+    <q-header reveal reveal-offset="-10" elevated >
       <!-- Top Information Bar -->
       <section
         class="bg-dark text-grey-4 row justify-between items-center q-px-md"
