@@ -87,6 +87,246 @@
     </div>
     
   </div>
+
+  <q-separator spaced vertical="false"/>
+
+  <!-- Product Cards -->
+  <div class="grandparent">
+    <div class="q-pa-md row items-start q-gutter-md">
+      <q-card class="my-card">
+        <img alt="Mountains" src="src/assets/PicCutOne.jpg" />
+
+        <q-card-section>
+          <div class="text-h6">Our Changing Planet</div>
+          <div class="text-subtitle2">by John Doe</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          {{ lorem }}
+        </q-card-section>
+
+        <q-card-actions vertical>
+          <q-btn flat>Action 1</q-btn>
+        </q-card-actions>
+
+      </q-card>
+      
+      <q-card class="my-card">
+        <img alt="Mountains" src="src/assets/PicCutThree.jpg" />
+
+        <q-card-section>
+          <div class="text-h6">Our Changing Planet</div>
+          <div class="text-subtitle2">by John Doe</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          {{ lorem }}
+        </q-card-section>
+
+        <q-card-actions vertical>
+          <q-btn flat>Action 1</q-btn>
+        </q-card-actions>
+
+      </q-card>
+
+      <q-card class="my-card">
+        <img alt="Mountains" src="src/assets/PicCutOne.jpg" />
+
+        <q-card-section>
+          <div class="text-h6">Our Changing Planet</div>
+          <div class="text-subtitle2">by John Doe</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          {{ lorem }}
+        </q-card-section>
+
+        <q-card-actions vertical>
+          <q-btn flat>Action 1</q-btn>
+        </q-card-actions>
+
+      </q-card>
+
+      <q-card class="my-card">
+        <img alt="Mountains" src="src/assets/PicCutOne.jpg" />
+
+        <q-card-section>
+          <div class="text-h6">Our Changing Planet</div>
+          <div class="text-subtitle2">by John Doe</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          {{ lorem }}
+        </q-card-section>
+
+         <q-card-actions vertical>
+          <q-btn flat>Action 1</q-btn>
+      </q-card-actions>
+
+      </q-card>
+
+      
+    </div>
+
+    <q-separator spaced vertical="false"/>
+
+    <div class="q-pa-md row items-start q-gutter-md">
+      <q-card class="my-card">
+        <img alt="Mountains" src="src/assets/PicCutOne.jpg" />
+
+        <q-card-section>
+          <div class="text-h6">Our Changing Planet</div>
+          <div class="text-subtitle2">by John Doe</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          {{ lorem }}
+        </q-card-section>
+
+        <q-card-actions vertical>
+          <q-btn flat>Action 1</q-btn>
+        </q-card-actions>
+
+      </q-card>
+
+      <q-card class="my-card">
+        <img alt="Mountains" src="src/assets/PicCutThree.jpg" />
+
+        <q-card-section>
+          <div class="text-h6">Our Changing Planet</div>
+          <div class="text-subtitle2">by John Doe</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          {{ lorem }}
+        </q-card-section>
+
+        <q-card-actions vertical>
+          <q-btn flat>Action 1</q-btn>
+        </q-card-actions>
+
+      </q-card>
+
+      <q-card class="my-card">
+        <img alt="Mountains" src="src/assets/PicCutOne.jpg" />
+
+        <q-card-section>
+          <div class="text-h6">Our Changing Planet</div>
+          <div class="text-subtitle2">by John Doe</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          {{ lorem }}
+        </q-card-section>
+
+        <q-card-actions vertical>
+          <q-btn flat>Action 1</q-btn>
+        </q-card-actions>
+
+      </q-card>
+
+      <q-card class="my-card">
+        <img alt="Mountains" src="src/assets/PicCutOne.jpg" />
+
+        <q-card-section>
+          <div class="text-h6">Our Changing Planet</div>
+          <div class="text-subtitle2">by John Doe</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          {{ lorem }}
+        </q-card-section>
+
+        <q-card-actions vertical>
+          <q-btn flat>Action 1</q-btn>
+        </q-card-actions>
+        
+      </q-card>
+
+      
+    </div>
+
+    <q-separator spaced vertical="false"/>
+
+    <div class="q-pa-md row items-start q-gutter-md">
+      <q-card class="my-card">
+        <img alt="Mountains" src="src/assets/PicCutOne.jpg" />
+
+        <q-card-section>
+          <div class="text-h6">Our Changing Planet</div>
+          <div class="text-subtitle2">by John Doe</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          {{ lorem }}
+        </q-card-section>
+
+        <q-card-actions vertical>
+          <q-btn flat>Action 1</q-btn>
+        </q-card-actions>
+
+
+      </q-card>
+
+      <q-card class="my-card">
+        <img alt="Mountains" src="src/assets/PicCutThree.jpg" />
+
+        <q-card-section>
+          <div class="text-h6">Our Changing Planet</div>
+          <div class="text-subtitle2">by John Doe</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          {{ lorem }}
+        </q-card-section>
+
+        <q-card-actions vertical>
+          <q-btn flat>Action 1</q-btn>
+        </q-card-actions>
+
+      </q-card>
+
+      <q-card class="my-card">
+        <img alt="Mountains" src="src/assets/PicCutOne.jpg" />
+
+        <q-card-section>
+          <div class="text-h6">Our Changing Planet</div>
+          <div class="text-subtitle2">by John Doe</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          {{ lorem }}
+        </q-card-section>
+
+
+        <q-card-actions vertical>
+          <q-btn flat>Action 1</q-btn>
+        </q-card-actions>
+
+
+      </q-card>
+
+      <q-card class="my-card">
+        <img alt="Mountains" src="src/assets/PicCutOne.jpg" />
+
+        <q-card-section>
+          <div class="text-h6">Our Changing Planet</div>
+          <div class="text-subtitle2">by John Doe</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          {{ lorem }}
+        </q-card-section>
+
+        <q-card-actions vertical>
+          <q-btn flat>Action 1</q-btn>
+        </q-card-actions>
+
+      </q-card>
+
+    </div>
+      
+  </div>
   
 </template>
 
@@ -219,7 +459,7 @@ const autoplay = ref(true)
   width: 100%;
   height: 300px;
   object-fit: cover;
-  display: block;
+  /* display: block; */
 }
 
 
@@ -259,5 +499,24 @@ const autoplay = ref(true)
     margin-left: 0;
     align-self: center;
   }
+}
+
+/* Cards with product information */
+.my-card{
+  width: 150%;
+  max-width: 350px;
+  align-items: center;
+  margin: auto;
+  gap: 10px;
+  padding: 10px;
+}
+
+.grandparent {
+  position: relative;
+}
+
+.q-pa-md.row.items-start.q-gutter-md {
+  gap:10px;
+  scroll-padding-top: 10px;
 }
 </style>

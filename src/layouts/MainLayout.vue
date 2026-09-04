@@ -194,7 +194,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const showFooter = ref(false)
-const scrollThreshold = 500 // Pixels to scroll before showing footer
+const scrollThreshold = 5000// Pixels to scroll before showing footer
 
 const handleScroll = () => {
   // Checks how far the user has scrolled down
