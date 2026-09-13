@@ -50,23 +50,36 @@
               hover
               aria-haspopup="menu"
               class="aLink"
+              
             >
               <q-list role="menu">
-                <q-item clickable v-close-popup>
+                <q-item to="/vision-mission/" clickable v-close-popup>
                   <q-item-section>
-                    <q-item-label>Photos</q-item-label>
+                    <q-item-label>Vision & Mission</q-item-label>
                   </q-item-section>
                 </q-item>
 
-                <q-item clickable v-close-popup>
+                <q-item to="/our-presence" clickable v-close-popup>
                   <q-item-section>
-                    <q-item-label>Videos</q-item-label>
+                    <q-item-label>Our Presence</q-item-label>
                   </q-item-section>
                 </q-item>
 
-                <q-item clickable v-close-popup>
+                <q-item to="/manufacturing-plant" clickable v-close-popup>
                   <q-item-section>
-                    <q-item-label>Articles</q-item-label>
+                    <q-item-label>Manufacturing Plant</q-item-label>
+                  </q-item-section>
+                </q-item>
+
+                <q-item to="/iso-certified" clickable v-close-popup>
+                  <q-item-section>
+                    <q-item-label>ISO-Certified Company</q-item-label>
+                  </q-item-section>
+                </q-item>
+
+                <q-item to="/our-brands-services" clickable v-close-popup>
+                  <q-item-section>
+                    <q-item-label>Our Brands & Services</q-item-label>
                   </q-item-section>
                 </q-item>
               </q-list>
@@ -194,7 +207,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const showFooter = ref(false)
-const scrollThreshold = 5000// Pixels to scroll before showing footer
+const scrollThreshold = 1000// Pixels to scroll before showing footer
 
 const handleScroll = () => {
   // Checks how far the user has scrolled down
