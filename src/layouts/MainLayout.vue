@@ -55,11 +55,7 @@
               <q-list role="menu">
                 <q-item to="/vision-mission/" clickable v-close-popup>
                   <q-item-section>
-<<<<<<< HEAD
                     <q-item-label>Vison & mission</q-item-label>
-=======
-                    <q-item-label>Vision & Mission</q-item-label>
->>>>>>> 55b0ae1ff101cc0040939a7b4abe14c907a02a64
                   </q-item-section>
                 </q-item>
 
