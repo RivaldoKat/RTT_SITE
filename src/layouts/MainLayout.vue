@@ -10,7 +10,7 @@
           <div class="cursor-pointer hover-text-white">
             <q-icon name="phone" class="q-mr-xs" /> +27 10 880 4744
           </div>
-          <div class="cursor-pointer hover-text-white">
+          <div class="cursor-pointer hover-text-white"; style="font-family: Open Sans, Sans-serif;">
             <q-icon name="mail" class="q-mr-xs" /> enquiries@rematiptop.co.za
           </div>
         </div>
@@ -55,7 +55,11 @@
               <q-list role="menu">
                 <q-item to="/vision-mission/" clickable v-close-popup>
                   <q-item-section>
+<<<<<<< HEAD
+                    <q-item-label>Vison & mission</q-item-label>
+=======
                     <q-item-label>Vision & Mission</q-item-label>
+>>>>>>> 55b0ae1ff101cc0040939a7b4abe14c907a02a64
                   </q-item-section>
                 </q-item>
 
@@ -71,13 +75,13 @@
                   </q-item-section>
                 </q-item>
 
-                <q-item to="/iso-certified" clickable v-close-popup>
+                <q-item clickable v-close-popup>
                   <q-item-section>
                     <q-item-label>ISO-Certified Company</q-item-label>
                   </q-item-section>
                 </q-item>
 
-                <q-item to="/our-brands-services" clickable v-close-popup>
+                <q-item clickable v-close-popup>
                   <q-item-section>
                     <q-item-label>Our Brands & Services</q-item-label>
                   </q-item-section>
@@ -96,21 +100,76 @@
               <q-list role="menu">
                 <q-item clickable v-close-popup>
                   <q-item-section>
-                    <q-item-label>Photos</q-item-label>
+                    <q-item-label>Adhesive Systems</q-item-label>
                   </q-item-section>
                 </q-item>
 
                 <q-item clickable v-close-popup>
                   <q-item-section>
-                    <q-item-label>Videos</q-item-label>
+                    <q-item-label>Automotive</q-item-label>
                   </q-item-section>
                 </q-item>
 
                 <q-item clickable v-close-popup>
                   <q-item-section>
-                    <q-item-label>Articles</q-item-label>
+                    <q-item-label>Belt Cleaning</q-item-label>
                   </q-item-section>
                 </q-item>
+
+                <q-item clickable v-close-popup>
+                  <q-item-section>
+                    <q-item-label>Belt Splicing Presses</q-item-label>
+                  </q-item-section>
+                </q-item>
+
+                <q-item clickable v-close-popup>
+                  <q-item-section>
+                    <q-item-label>Belt Splicing Services, Materials & Tools</q-item-label>
+                  </q-item-section>
+                </q-item>
+
+                <q-item clickable v-close-popup>
+                  <q-item-section>
+                    <q-item-label>Conveyor Belting</q-item-label>
+                  </q-item-section>
+                </q-item>
+
+                <q-item clickable v-close-popup>
+                  <q-item-section>
+                    <q-item-label>Hand Built Mining & Industrial Hose</q-item-label>
+                  </q-item-section>
+                </q-item>
+
+                <q-item clickable v-close-popup>
+                  <q-item-section>
+                    <q-item-label>Idler Systems</q-item-label>
+                  </q-item-section>
+                </q-item>
+
+                <q-item clickable v-close-popup>
+                  <q-item-section>
+                    <q-item-label>Mill Liners</q-item-label>
+                  </q-item-section>
+                </q-item>
+
+                <q-item clickable v-close-popup>
+                  <q-item-section>
+                    <q-item-label>Pulley Lagging</q-item-label>
+                  </q-item-section>
+                </q-item>
+
+                <q-item clickable v-close-popup>
+                  <q-item-section>
+                    <q-item-label>Technical Advisory</q-item-label>
+                  </q-item-section>
+                </q-item>
+
+                <q-item clickable v-close-popup>
+                  <q-item-section>
+                    <q-item-label>Rema Tip Top Academy</q-item-label>
+                  </q-item-section>
+                </q-item>
+
               </q-list>
             </q-btn-dropdown>
             
@@ -223,3 +282,16 @@ onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
 })
 </script>
+
+
+
+
+
+<!-- CASCADING STYLE SHEET -->
+.bg-dark.text-grey-4.row.justify-between.items-center.q-px-md {
+  padding-left: 16px;
+  padding-right: 16px;
+  display :flex;
+  flex-wrap: wrap;
+
+}
