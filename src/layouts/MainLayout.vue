@@ -75,21 +75,13 @@
                   </q-item-section>
                 </q-item>
 
-<<<<<<< HEAD
                 <q-item clickable v-close-popup>
-=======
-                <q-item to="/iso-certified" clickable v-close-popup>
->>>>>>> 55b0ae1ff101cc0040939a7b4abe14c907a02a64
                   <q-item-section>
                     <q-item-label>ISO-Certified Company</q-item-label>
                   </q-item-section>
                 </q-item>
 
-<<<<<<< HEAD
                 <q-item clickable v-close-popup>
-=======
-                <q-item to="/our-brands-services" clickable v-close-popup>
->>>>>>> 55b0ae1ff101cc0040939a7b4abe14c907a02a64
                   <q-item-section>
                     <q-item-label>Our Brands & Services</q-item-label>
                   </q-item-section>
