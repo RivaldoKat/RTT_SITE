@@ -91,7 +91,7 @@
   <q-separator spaced vertical="false"/>
 
   <!-- Product Cards -->
-  <div class="grandparent">
+  <div class="q-pa-md">
     <div class="q-pa-md row items-start q-gutter-md">
       <q-card class="my-card">
         <img alt="Mountains" src="src/assets/PicCutOne.jpg" />
@@ -372,7 +372,6 @@ const autoplay = ref(true)
 }
 
 
-
 .hero-content {
   position: relative;
   z-index: 2; 
@@ -399,8 +398,6 @@ const autoplay = ref(true)
 .text-block {
   flex: 1;
 }
-
-
 
 
 .africa-map {
@@ -459,7 +456,7 @@ const autoplay = ref(true)
   width: 100%;
   height: 300px;
   object-fit: cover;
-  /* display: block; */
+  display: block;
 }
 
 
@@ -506,17 +503,14 @@ const autoplay = ref(true)
   width: 150%;
   max-width: 350px;
   align-items: center;
-  margin: auto;
-  gap: 10px;
-  padding: 10px;
-}
-
-.grandparent {
-  position: relative;
+  margin-left: 15px;
+  margin-right: 15px;
+  padding: 5px;
 }
 
 .q-pa-md.row.items-start.q-gutter-md {
-  gap:10px;
+  gap:15px;
   scroll-padding-top: 10px;
+  margin-left: 250px;
 }
 </style>

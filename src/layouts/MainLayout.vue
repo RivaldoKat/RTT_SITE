@@ -50,33 +50,46 @@
               hover
               aria-haspopup="menu"
               class="aLink"
+              
             >
               <q-list role="menu">
-                <q-item clickable v-close-popup>
+                <q-item to="/vision-mission/" clickable v-close-popup>
                   <q-item-section>
+<<<<<<< HEAD
                     <q-item-label>Vison & mission</q-item-label>
+=======
+                    <q-item-label>Vision & Mission</q-item-label>
+>>>>>>> 55b0ae1ff101cc0040939a7b4abe14c907a02a64
                   </q-item-section>
                 </q-item>
 
-                <q-item clickable v-close-popup>
+                <q-item to="/our-presence" clickable v-close-popup>
                   <q-item-section>
                     <q-item-label>Our Presence</q-item-label>
                   </q-item-section>
                 </q-item>
 
-                <q-item clickable v-close-popup>
+                <q-item to="/manufacturing-plant" clickable v-close-popup>
                   <q-item-section>
                     <q-item-label>Manufacturing Plant</q-item-label>
                   </q-item-section>
                 </q-item>
 
+<<<<<<< HEAD
                 <q-item clickable v-close-popup>
+=======
+                <q-item to="/iso-certified" clickable v-close-popup>
+>>>>>>> 55b0ae1ff101cc0040939a7b4abe14c907a02a64
                   <q-item-section>
                     <q-item-label>ISO-Certified Company</q-item-label>
                   </q-item-section>
                 </q-item>
 
+<<<<<<< HEAD
                 <q-item clickable v-close-popup>
+=======
+                <q-item to="/our-brands-services" clickable v-close-popup>
+>>>>>>> 55b0ae1ff101cc0040939a7b4abe14c907a02a64
                   <q-item-section>
                     <q-item-label>Our Brands & Services</q-item-label>
                   </q-item-section>
@@ -261,7 +274,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const showFooter = ref(false)
-const scrollThreshold = 5000// Pixels to scroll before showing footer
+const scrollThreshold = 1000// Pixels to scroll before showing footer
 
 const handleScroll = () => {
   // Checks how far the user has scrolled down
