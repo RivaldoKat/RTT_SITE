@@ -1,516 +1,602 @@
 <template>
-  <div>
+  <q-page>
     <q-carousel
-      animated
       v-model="slide"
-      height="620px"
+      class="home-carousel"
+      animated
       infinite
-      control-text-color="red"
-      :autoplay="autoplay"
       arrows
+      navigation
+      control-color="red"
+      :autoplay="autoplay"
       transition-prev="slide-right"
       transition-next="slide-left"
       @mouseenter="autoplay = false"
       @mouseleave="autoplay = true"
     >
-      <q-carousel-slide class="no-padding" :name="1" img-src="/src/assets/ViewsOne.jpg">
-        <div class="absolute-bottom custom-caption">
-          <div class="text-h2 text-white">First stop</div>
-          <div class="caption-subtext text-subtitle1 text-grey-3">Mountains</div>
-        </div>
-      </q-carousel-slide>
-      <q-carousel-slide :name="2" img-src="/src/assets/ViewsThree.jpg">
-        <div class="absolute-bottom custom-caption">
-          <div class="text-h4 text-white">Second stop</div>
-          <div class="caption-subtext text-subtitle1 text-grey-3">Famous City</div>
-        </div>
-      </q-carousel-slide>
-      <q-carousel-slide :name="3" img-src="/src/assets/ViewsTwo.jpeg">
-        <div class="absolute-bottom custom-caption">
-          <div class="caption-text text-h4 text-white">Third stop</div>
-          <div class="caption-subtext text-subtitle1 text-grey-3">Famous Bridge</div>
-        </div>
-      </q-carousel-slide>
-      <q-carousel-slide :name="4" img-src="/src/assets/ViewsOne.jpg">
-        <div class="absolute-bottom custom-caption">
-          <div class="caption-text text-h4 text-white">Fourth stop</div>
-          <div class="caption-subtext text-subtitle1 text-grey-3">Quasar Framework</div>
+      <q-carousel-slide
+        v-for="item in carouselSlides"
+        :key="item.name"
+        :name="item.name"
+        class="no-padding home-carousel__slide"
+        :class="{ 'home-carousel__slide--active': slide === item.name }"
+      >
+        <img
+          :src="item.image"
+          :alt="item.title"
+          class="home-carousel__image"
+          :class="{ 'home-carousel__image--active': slide === item.name }"
+        />
+        <div
+          class="home-carousel__caption"
+          :class="{ 'home-carousel__caption--active': slide === item.name }"
+        >
+          <h2>{{ item.title }}</h2>
+          <p>{{ item.subtitle }}</p>
         </div>
       </q-carousel-slide>
     </q-carousel>
-  </div>
 
-  <!-- HERO SECTION WRAPPER -->
-  <div class="hero-section q-pa-md" >
-    <!-- Clean, independent dark background block -->
-    <div class="hero-bg"></div>
-
-    <!-- Floating content container -->
-    <div class="hero-content">
-      
-      <!-- LEFT SIDE: Top-aligned Text and Map -->
-      <div class="hero-left">
-        <div class="text-block">
-          <h1 class="text-h3 q-mb-sm text-weight-regular text-grey-3">REMA TIP TOP</h1>
-          <h2 class="text-h4 text-weight-regular text-grey-3">
-            South Africa And<br />
-            African Group
-          </h2>
+    <section class="home-hero">
+      <div class="home-hero__content">
+        <div class="home-hero__intro">
+          <div>
+            <h1>REMA TIP TOP</h1>
+            <h2>South Africa And<br />African Group</h2>
+          </div>
+          <img :src="africaMap" alt="Africa Map" class="home-hero__map" />
         </div>
+        <div class="home-hero__gallery">
+          <div
+            v-for="image in heroImages"
+            :key="image.src"
+            class="home-hero__image"
+            :class="image.className"
+          >
+            <img :src="image.src" :alt="image.alt" />
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <div class="africa-map">
-          <img
-            src="src/assets/Afrique.png"
-            alt="Africa Map"
-            class="africa-svg"
+    <section class="home-introduction">
+      <div class="home-introduction__copy">
+        <h2>This is REMA TIP TOP</h2>
+        <p
+          >REMA stands for REpair MAt material and embodies our commitment to
+          repair and reusability. We have been committed to the environment
+          since our foundation. In a time when sustainability and efficiency are
+          becoming increasingly important, we offer technology that conserves
+          resources and minimizes environmental impact, while increasing the
+          uptime of your equipment and improving its safety and efficiency.</p
+        >
+        <p
+          >As a leading global provider, we are represented in over 190
+          countries. Our extensive network of service technicians enables us to
+          dedicate ourselves to your needs with the care and attention you
+          deserve, every day, all over the world.</p
+        >
+        <p
+          >We believe in quality, service and innovation in every area of our
+          business.</p
+        >
+      </div>
+    </section>
+
+    <section
+      ref="productsSection"
+      class="home-products"
+      :class="{ 'home-products--visible': productsVisible }"
+    >
+      <div class="home-products__grid">
+        <q-card
+          v-for="(product, index) in products"
+          :key="product.to"
+          flat
+          class="product-card"
+          :style="{ '--card-index': index }"
+        >
+          <q-img
+            :src="product.image"
+            :alt="product.title"
+            class="product-card__image"
           />
-        </div>
+          <div class="product-card__overlay" />
+          <q-card-section class="product-card__body">
+            <h2>{{ product.title }}</h2>
+            <p>{{ product.description }}</p>
+            <q-btn :to="product.to" flat no-caps class="product-card__button"
+              >Learn more <q-icon name="arrow_forward"
+            /></q-btn>
+          </q-card-section>
+        </q-card>
       </div>
-
-      <!-- RIGHT SIDE: The 3-Image Grid -->
-      <div class="hero-right">
-        <div class="images-grid">
-          <div class="image-large">
-            <img src="src/assets/PicCutOne.jpg" alt="Conveyor Belt" class="full-img" />
-          </div>
-          <div class="images-row">
-            <div class="image-small">
-              <img src="src/assets/PicCutTwo.jpg" alt="Tire" class="full-img" />
-            </div>
-            <div class="image-small">
-              <img src="src/assets/PicCutThree.jpg" alt="Cable" class="full-img" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-    
-  </div>
-
-  <q-separator spaced vertical="false"/>
-
-  <!-- Product Cards -->
-  <div class="q-pa-md">
-    <div class="q-pa-md row items-start q-gutter-md">
-      <q-card class="my-card">
-        <img alt="Mountains" src="src/assets/PicCutOne.jpg" />
-
-        <q-card-section>
-          <div class="text-h6">Our Changing Planet</div>
-          <div class="text-subtitle2">by John Doe</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          {{ lorem }}
-        </q-card-section>
-
-        <q-card-actions vertical>
-          <q-btn flat>Action 1</q-btn>
-        </q-card-actions>
-
-      </q-card>
-      
-      <q-card class="my-card">
-        <img alt="Mountains" src="src/assets/PicCutThree.jpg" />
-
-        <q-card-section>
-          <div class="text-h6">Our Changing Planet</div>
-          <div class="text-subtitle2">by John Doe</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          {{ lorem }}
-        </q-card-section>
-
-        <q-card-actions vertical>
-          <q-btn flat>Action 1</q-btn>
-        </q-card-actions>
-
-      </q-card>
-
-      <q-card class="my-card">
-        <img alt="Mountains" src="src/assets/PicCutOne.jpg" />
-
-        <q-card-section>
-          <div class="text-h6">Our Changing Planet</div>
-          <div class="text-subtitle2">by John Doe</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          {{ lorem }}
-        </q-card-section>
-
-        <q-card-actions vertical>
-          <q-btn flat>Action 1</q-btn>
-        </q-card-actions>
-
-      </q-card>
-
-      <q-card class="my-card">
-        <img alt="Mountains" src="src/assets/PicCutOne.jpg" />
-
-        <q-card-section>
-          <div class="text-h6">Our Changing Planet</div>
-          <div class="text-subtitle2">by John Doe</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          {{ lorem }}
-        </q-card-section>
-
-         <q-card-actions vertical>
-          <q-btn flat>Action 1</q-btn>
-      </q-card-actions>
-
-      </q-card>
-
-      
-    </div>
-
-    <q-separator spaced vertical="false"/>
-
-    <div class="q-pa-md row items-start q-gutter-md">
-      <q-card class="my-card">
-        <img alt="Mountains" src="src/assets/PicCutOne.jpg" />
-
-        <q-card-section>
-          <div class="text-h6">Our Changing Planet</div>
-          <div class="text-subtitle2">by John Doe</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          {{ lorem }}
-        </q-card-section>
-
-        <q-card-actions vertical>
-          <q-btn flat>Action 1</q-btn>
-        </q-card-actions>
-
-      </q-card>
-
-      <q-card class="my-card">
-        <img alt="Mountains" src="src/assets/PicCutThree.jpg" />
-
-        <q-card-section>
-          <div class="text-h6">Our Changing Planet</div>
-          <div class="text-subtitle2">by John Doe</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          {{ lorem }}
-        </q-card-section>
-
-        <q-card-actions vertical>
-          <q-btn flat>Action 1</q-btn>
-        </q-card-actions>
-
-      </q-card>
-
-      <q-card class="my-card">
-        <img alt="Mountains" src="src/assets/PicCutOne.jpg" />
-
-        <q-card-section>
-          <div class="text-h6">Our Changing Planet</div>
-          <div class="text-subtitle2">by John Doe</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          {{ lorem }}
-        </q-card-section>
-
-        <q-card-actions vertical>
-          <q-btn flat>Action 1</q-btn>
-        </q-card-actions>
-
-      </q-card>
-
-      <q-card class="my-card">
-        <img alt="Mountains" src="src/assets/PicCutOne.jpg" />
-
-        <q-card-section>
-          <div class="text-h6">Our Changing Planet</div>
-          <div class="text-subtitle2">by John Doe</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          {{ lorem }}
-        </q-card-section>
-
-        <q-card-actions vertical>
-          <q-btn flat>Action 1</q-btn>
-        </q-card-actions>
-        
-      </q-card>
-
-      
-    </div>
-
-    <q-separator spaced vertical="false"/>
-
-    <div class="q-pa-md row items-start q-gutter-md">
-      <q-card class="my-card">
-        <img alt="Mountains" src="src/assets/PicCutOne.jpg" />
-
-        <q-card-section>
-          <div class="text-h6">Our Changing Planet</div>
-          <div class="text-subtitle2">by John Doe</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          {{ lorem }}
-        </q-card-section>
-
-        <q-card-actions vertical>
-          <q-btn flat>Action 1</q-btn>
-        </q-card-actions>
-
-
-      </q-card>
-
-      <q-card class="my-card">
-        <img alt="Mountains" src="src/assets/PicCutThree.jpg" />
-
-        <q-card-section>
-          <div class="text-h6">Our Changing Planet</div>
-          <div class="text-subtitle2">by John Doe</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          {{ lorem }}
-        </q-card-section>
-
-        <q-card-actions vertical>
-          <q-btn flat>Action 1</q-btn>
-        </q-card-actions>
-
-      </q-card>
-
-      <q-card class="my-card">
-        <img alt="Mountains" src="src/assets/PicCutOne.jpg" />
-
-        <q-card-section>
-          <div class="text-h6">Our Changing Planet</div>
-          <div class="text-subtitle2">by John Doe</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          {{ lorem }}
-        </q-card-section>
-
-
-        <q-card-actions vertical>
-          <q-btn flat>Action 1</q-btn>
-        </q-card-actions>
-
-
-      </q-card>
-
-      <q-card class="my-card">
-        <img alt="Mountains" src="src/assets/PicCutOne.jpg" />
-
-        <q-card-section>
-          <div class="text-h6">Our Changing Planet</div>
-          <div class="text-subtitle2">by John Doe</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          {{ lorem }}
-        </q-card-section>
-
-        <q-card-actions vertical>
-          <q-btn flat>Action 1</q-btn>
-        </q-card-actions>
-
-      </q-card>
-
-    </div>
-      
-  </div>
-  
+    </section>
+  </q-page>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+import africaMap from '@/assets/Afrique.png'
+import automotiveImage from '@/assets/Automotive-tyre.jpg'
+import cementImage from '@/assets/cement.jpg'
+import chemicalsImage from '@/assets/chemicals.jpg'
+import conveyorImage from '@/assets/Conveyor-Belting.jpg'
+import miningImage from '@/assets/mining.jpg'
+import plantImage from '@/assets/howick.jpg'
+import processingImage from '@/assets/Material-Processing.png'
+import picCutOne from '@/assets/PicCutOne.jpg'
+import picCutThree from '@/assets/PicCutThree.jpg'
+import picCutTwo from '@/assets/PicCutTwo.jpg'
+import surfaceProtectionImage from '@/assets/Surface-Protection.jpg'
 
 const slide = ref(1)
-const autoplay = ref(true)
+const autoplay = ref(8000)
+const productsSection = ref(null)
+const productsVisible = ref(false)
+let productsObserver
+
+const heroImages = [
+  {
+    src: picCutOne,
+    alt: 'Conveyor Belt',
+    className: 'home-hero__image--large'
+  },
+  { src: picCutTwo, alt: 'Tire', className: '' },
+  { src: picCutThree, alt: 'Cable', className: '' }
+]
+
+const carouselSlides = [
+  {
+    name: 1,
+    image: surfaceProtectionImage,
+    title: 'Surface Protection',
+    subtitle:
+      'A comprehensive range of products and services offered by REMA TIP TOP for lining and coating surfaces to provide optimum protection ensuring long, trouble free life.'
+  },
+  {
+    name: 2,
+    image: conveyorImage,
+    title: 'Conveyor Belting',
+    subtitle:
+      'Rema Tip Top Manufacture a comprehensive range of conveyor belting in the wholly owned factory, Dunlop Industrial Products, situated on the banks of the Umgeni (Mgeni) river in KwaZulu-Natal province of South Africa.'
+  },
+  {
+    name: 3,
+    image: automotiveImage,
+    title: 'Automotive',
+    subtitle:
+      'REMA TIP TOP is a worldwide market leader in the tyre repair sector. In addition to an offering of tyre repair materials and tyre repair systems, we provide retreading and repair services meeting the highest standards of safety and quality.'
+  }
+]
+
+const productData = [
+  [
+    'Adhesive Systems',
+    chemicalsImage,
+    'adhesive-systems',
+    'REMA TIP TOP adhesive systems are available for a wide range of applications using materials developed over many years of scientific research.'
+  ],
+  [
+    'Automotive',
+    automotiveImage,
+    'automotive',
+    'REMA TIP TOP offers the Automotive sector a unique and comprehensive program consisting of customer-oriented services.'
+  ],
+  [
+    'Belt Cleaning Systems',
+    surfaceProtectionImage,
+    'belt-cleaning',
+    'REMA TIP TOP has developed a reputation for its high-quality conveyor belt splicing and repair service provider.'
+  ],
+  [
+    'Belt Splicing Presses',
+    processingImage,
+    'belt-splicing-presses',
+    'REMA TIP TOP has developed a reputation over the years as being one of the world’s foremost splicing companies.'
+  ],
+  [
+    'Belt Splicing Services, Materials & Tools',
+    picCutTwo,
+    'belt-splicing-services-materials-tools',
+    'Over many years REMA TIP TOP has earned the reputation as the premier supplier of vulcanising systems for endless conveyor belt splicing.'
+  ],
+  [
+    'Conveyor Belting',
+    conveyorImage,
+    'conveyor-belting',
+    'Rema Tip Top manufactures a comprehensive range of conveyor belting in the wholly owned factory situated on the banks of the Umgeni River.'
+  ],
+  [
+    'Hand Built Mining and Industrial Hose',
+    picCutThree,
+    'hand-built-mining-industrial-hose',
+    'Mineral rich sands along Africa’s coastline have long been flooded and then sucked into processing plants using hoses developed at our manufacturing factory.'
+  ],
+  [
+    'Idler Systems',
+    picCutOne,
+    'idler-systems',
+    'REMA TIP TOP offer a complete range of steel, impact and HDPE idler rollers together with standard, self-aligning and suspended conveyor idler frames.'
+  ],
+  [
+    'Mill Liners',
+    miningImage,
+    'mill-liners',
+    'Reliable wear protection solutions for demanding mineral processing and material handling environments.'
+  ],
+  [
+    'Pulley Lagging',
+    cementImage,
+    'pulley-lagging',
+    'High-performance pulley lagging systems designed to improve traction, protect equipment and extend service life.'
+  ],
+  [
+    'Technical Advisory',
+    plantImage,
+    'technical-advisory',
+    'Practical technical support and application advice from experienced REMA TIP TOP specialists.'
+  ],
+  [
+    'Rema Tip Top Academy',
+    africaMap,
+    'rema-tip-top-academy',
+    'Training and knowledge sharing to help customers and service teams work safely and effectively.'
+  ]
+]
+
+const products = productData.map(([title, image, slug, description]) => ({
+  title,
+  image,
+  description,
+  to: `/products/${slug}`
+}))
+
+onMounted(() => {
+  if (!productsSection.value || !('IntersectionObserver' in window)) {
+    productsVisible.value = true
+    return
+  }
+  productsObserver = new IntersectionObserver(
+    entries => {
+      if (entries.some(entry => entry.isIntersecting)) {
+        productsVisible.value = true
+        productsObserver.disconnect()
+      }
+    },
+    { threshold: 0.12 }
+  )
+  productsObserver.observe(productsSection.value)
+})
+
+onBeforeUnmount(() => productsObserver?.disconnect())
 </script>
 
 <style scoped>
-/* Carousel Styles */
-.custom-caption{
-  text-align: center;
-  padding: 12px;
-  color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, .3);
-  }
- 
-
-
-/* HERO SECTION STYLES */
-.hero-section {
+.home-hero {
   position: relative;
-  width: 100%;
-  background-color: #ffffff; /* The pure white base revealed underneath */
+  overflow: hidden;
+  min-height: 735px;
+  background: white;
+  color: white;
 }
-
-/* 
-  FIX 1: Isolate the background shape.
-  We make this an absolute box that sits behind the content text/images.
-*/
-.hero-bg {
+.home-hero::before {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 680px; /* Fixed height for the dark background block */
-  background-color: rgb(37, 36, 36);
-  /* The slant cuts across the box cleanly */
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 70%);
-  z-index: 1;
+  inset: 0;
+  background: #252424;
+  clip-path: polygon(0 0, 100% 0, 100% 92%, 0 49%);
+  content: '';
 }
-
-
-.hero-content {
+.home-hero__content {
   position: relative;
-  z-index: 2; 
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start; 
-  max-width: 1600px;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  width: min(100% - 3rem, 1240px);
   margin: 0 auto;
-  padding: 80px 60px 0 60px; 
-  gap: 50px;
+  padding: 3.5rem 0 6.25rem;
+  animation: hero-fade-in 0.9s ease-out both;
 }
-
-
-.hero-left {
-  flex: 1.2;
+.home-hero__intro {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  color: white;
-  padding-top: 20px;
-  margin-left: 90px;
+  gap: 1rem;
+  min-width: 0;
 }
-
-.text-block {
-  flex: 1;
+.home-hero__intro h1 {
+  margin: 0 0 1.5rem;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 400;
 }
-
-
-.africa-map {
-  flex: 0 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 20px;
+.home-hero__intro h2 {
+  margin: 0;
+  font-size: clamp(1.5rem, 2.8vw, 2.4rem);
+  font-weight: 400;
+  line-height: 1.45;
 }
-
-.africa-svg {
-  width: 260px; 
+.home-hero__map {
+  width: clamp(100px, 16vw, 260px);
+  max-width: 45%;
   height: auto;
   object-fit: contain;
-  
+}
+.home-hero__gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.home-hero__image {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 15px 30px rgb(0 0 0 / 30%);
+  aspect-ratio: 1.2;
+}
+.home-hero__image--large {
+  grid-column: 1 / -1;
+  aspect-ratio: 1.95;
+}
+.home-hero__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-
-.hero-right {
-  flex: 1;
-  max-width: 1000px;
-  margin-right: 76px;
+.home-carousel {
+  height: clamp(260px, 34vw, 480px);
 }
 
-.images-grid {
+.home-carousel__caption {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem clamp(1rem, 5vw, 4rem);
+  background: linear-gradient(rgb(0 0 0 / 18%), rgb(0 0 0 / 34%));
+  color: white;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
 }
 
-.image-large {
-  width: 100%;
-  height: 300px;
-  border-radius: 12px;
+.home-carousel__slide--active {
   overflow: hidden;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.3);
 }
 
-.images-row {
-  display: flex;
+.home-carousel__image {
+  position: absolute;
+  inset: 0;
   width: 100%;
-
-  gap: 16px;
-}
-
-.image-small {
-  flex: 1;
-  height: 300px;
-  border-radius: 12px;
-  overflow: hidden;
-  
-  box-shadow: 0 15px 35px rgba(0,0,0,0.35); 
-}
-
-.full-img {
-  width: 100%;
-  height: 300px;
+  height: 100%;
   object-fit: cover;
-  display: block;
+  object-position: center;
 }
 
+.home-carousel__image--active {
+  animation: carousel-image-zoom 8s linear both;
+  transform-origin: center;
+  backface-visibility: hidden;
+  will-change: transform;
+}
 
-@media (max-width: 1100px) {
-  .hero-bg {
-    height: 720px;
-  }
-  
-  .hero-content {
-    flex-direction: column;
-    padding: 60px 30px 60px 30px;
-    gap: 50px;
+.home-carousel__caption--active {
+  animation: carousel-caption-fade 0.8s 0.25s ease-out forwards;
+}
+
+.home-carousel__caption h2 {
+  margin: 1rem 0 0.25rem;
+  color: #ff2a2a;
+  font-size: clamp(1.4rem, 3vw, 2.4rem);
+  font-weight: 500;
+  text-shadow: 0 2px 4px rgb(0 0 0 / 45%);
+}
+
+.home-carousel__caption p {
+  margin: 0;
+  color: white;
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgb(0 0 0 / 65%);
+}
+
+@keyframes carousel-image-zoom {
+  from {
+    transform: scale(1);
   }
 
-  .hero-left, .hero-right {
-    width: 100%;
-    max-width: 100%;
+  to {
+    transform: scale(1.12);
   }
+}
 
-  .hero-left {
+@keyframes carousel-caption-fade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home-introduction {
+  width: min(100% - 3rem, 1240px);
+  margin: 0 auto;
+  padding: 4rem 0 5rem;
+}
+.home-introduction__copy {
+  max-width: 600px;
+  margin: 0 auto 3.5rem;
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.home-introduction__copy h2 {
+  margin: 0 0 1rem;
+  color: #171717;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  line-height: 1.1;
+}
+.home-introduction__copy p {
+  margin: 0 0 1rem;
+}
+.product-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgb(0 0 0 / 8%), rgb(0 0 0 / 88%));
+}
+.product-card__button {
+  align-self: flex-start;
+  padding: 0;
+  color: #ff2a2a;
+  font-size: 1rem;
+}
+.product-card__button .q-icon {
+  margin-left: 0.5rem;
+}
+
+.home-products {
+  width: min(100% - 3rem, 1240px);
+  margin: 0 auto;
+  padding: 3rem 0 4rem;
+}
+.home-products__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+.product-card {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 360px;
+  overflow: hidden;
+  border-radius: 0;
+  background: #242021;
+  box-shadow: 0 5px 18px rgb(0 0 0 / 12%);
+  opacity: 0;
+  transform: translateY(28px);
+}
+.home-products--visible .product-card {
+  animation: product-fade-up 0.65s ease-out forwards;
+  animation-delay: calc(var(--card-index) * 70ms);
+}
+.product-card__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  filter: saturate(0.8);
+}
+.product-card__body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex: 1;
+  min-height: 360px;
+  padding: 1.5rem;
+  color: white;
+}
+.product-card__body h2 {
+  margin: 0 0 0.75rem;
+  color: white;
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+  font-weight: 600;
+  line-height: 1.1;
+}
+.product-card__body p {
+  max-width: 18rem;
+  margin: 0;
+  color: rgb(255 255 255 / 88%);
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+.product-card__button {
+  margin-top: 1.5rem;
+}
+
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes product-fade-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-hero__content,
+  .home-products--visible .product-card,
+  .home-carousel__image--active,
+  .home-carousel__caption--active {
+    animation: none;
+  }
+  .home-carousel__caption {
+    opacity: 1;
+    transform: none;
+  }
+  .product-card {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (max-width: 800px) {
+  .home-hero {
+    min-height: 0;
+  }
+  .home-hero::before {
+    clip-path: polygon(0 0, 100% 0, 100% 72%, 0 55%);
+  }
+  .home-hero__content {
+    grid-template-columns: 1fr;
+    padding-bottom: 5rem;
+  }
+  .home-hero__intro {
     justify-content: space-around;
   }
-}
-
-@media (max-width: 600px) {
-  .hero-bg {
-    height: 940px;
-  }
-
-  .hero-left {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 30px;
-  }
-  
-  .africa-map {
-    margin-left: 0;
-    align-self: center;
+  .home-products__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
-
-/* Cards with product information */
-.my-card{
-  width: 150%;
-  max-width: 350px;
-  align-items: center;
-  margin-left: 15px;
-  margin-right: 15px;
-  padding: 5px;
-}
-
-.q-pa-md.row.items-start.q-gutter-md {
-  gap:15px;
-  scroll-padding-top: 10px;
-  margin-left: 250px;
+@media (max-width: 599px) {
+  .home-hero__content,
+  .home-introduction,
+  .home-products {
+    width: min(100% - 1.5rem, 1240px);
+  }
+  .home-hero__content {
+    padding-top: 2.5rem;
+  }
+  .home-hero__intro {
+    align-items: center;
+  }
+  .home-hero__intro h1 {
+    font-size: 1.7rem;
+  }
+  .home-hero__intro h2 {
+    font-size: 1.35rem;
+  }
+  .home-hero__gallery {
+    gap: 0.75rem;
+  }
+  .home-products__grid {
+    grid-template-columns: 1fr;
+  }
+  .product-card,
+  .product-card__body {
+    min-height: 320px;
+  }
 }
 </style>
