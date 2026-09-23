@@ -1,51 +1,50 @@
 <template>
   <q-layout view="lHh lpr lFf">
-    <q-header reveal reveal-offset="-10" elevated >
-      <!-- Top Information Bar -->
-      <section
-        class="bg-dark text-grey-4 row justify-between items-center q-px-md"
-        style="height: 40px; font-size: 13px"
-      >
-        <div class="row q-gutter-x-md">
-          <div class="cursor-pointer hover-text-white">
-            <q-icon name="phone" class="q-mr-xs" /> +27 10 880 4744
+    <q-header class="site-header">
+      <section class="bg-dark text-grey-4 layout-contact-bar">
+        <div class="layout-contact-bar__inner">
+          <div class="layout-contact-details">
+            <a href="tel:+27108804744"
+              ><q-icon name="phone" /> +27 10 880 4744</a
+            >
+            <a href="mailto:enquiries@rematiptop.co.za"
+              ><q-icon name="mail" /> enquiries@rematiptop.co.za</a
+            >
           </div>
-          <div class="cursor-pointer hover-text-white"; style="font-family: Open Sans, Sans-serif;">
+          <div class="cursor-pointer hover-text-white">
             <q-icon name="mail" class="q-mr-xs" /> enquiries@rematiptop.co.za
           </div>
         </div>
-        <div class="row q-gutter-x-sm ">
-          <q-btn flat round dense icon="fab fa-linkedin" size="sm" />
-          <q-btn flat round dense icon="fab fa-instagram" size="sm" />
-          <q-btn flat round dense icon="fab fa-facebook-f" size="sm" />
-        </div>
       </section>
 
-      <!-- Main Navigation -->
-      <section>
-        <q-toolbar class="q-py-sm q-px-md bg-white">
-          <q-toolbar-title>
-            <!-- Replace with actual logo -->
-            <div class="text-weight-bold text-h5 text-white">
-              <img
-                src="src/assets/RemaTipTopLogo.png"
-                alt="Rema Tip Top Logo"
-              />
-            </div>
+      <q-toolbar class="bg-white layout-toolbar">
+        <div class="layout-toolbar__inner">
+          <q-btn
+            v-if="$q.screen.lt.md"
+            flat
+            round
+            dense
+            icon="menu"
+            color="red"
+            aria-label="Open navigation"
+            @click="drawerOpen = !drawerOpen"
+          />
+          <q-toolbar-title class="layout-logo">
+            <router-link to="/" aria-label="Rema Tip Top home">
+              <img :src="logo" alt="Rema Tip Top Logo" />
+            </router-link>
           </q-toolbar-title>
 
-          <q-space />
-
           <q-tabs
+            v-if="$q.screen.gt.sm"
             align="right"
             active-color="red"
             indicator-color="red"
-            class="text-grey"
+            class="text-grey layout-tabs"
           >
-            <q-route-tab to="/" label="Home" class="text-red" />
+            <q-route-tab to="/" label="Home" />
             <q-btn-dropdown
               flat
-              border: none
               label="About Rema Tip Top"
               hover
               aria-haspopup="menu"
@@ -55,7 +54,7 @@
               <q-list role="menu">
                 <q-item to="/vision-mission/" clickable v-close-popup>
                   <q-item-section>
-                    <q-item-label>Vison & mission</q-item-label>
+                    <q-item-label>Vision & Mission</q-item-label>
                   </q-item-section>
                 </q-item>
 
@@ -71,23 +70,21 @@
                   </q-item-section>
                 </q-item>
 
-                <q-item clickable v-close-popup>
+                <q-item to="/iso-certified" clickable v-close-popup>
                   <q-item-section>
                     <q-item-label>ISO-Certified Company</q-item-label>
                   </q-item-section>
                 </q-item>
 
-                <q-item clickable v-close-popup>
+                <q-item to="/our-brands-services" clickable v-close-popup>
                   <q-item-section>
                     <q-item-label>Our Brands & Services</q-item-label>
                   </q-item-section>
                 </q-item>
               </q-list>
             </q-btn-dropdown>
-            
             <q-btn-dropdown
               flat
-              border: none
               label="Products"
               hover
               aria-haspopup="menu"
@@ -96,188 +93,384 @@
               <q-list role="menu">
                 <q-item clickable v-close-popup>
                   <q-item-section>
-                    <q-item-label>Adhesive Systems</q-item-label>
+                    <q-item-label>Photos</q-item-label>
                   </q-item-section>
                 </q-item>
 
                 <q-item clickable v-close-popup>
                   <q-item-section>
-                    <q-item-label>Automotive</q-item-label>
+                    <q-item-label>Videos</q-item-label>
                   </q-item-section>
                 </q-item>
 
                 <q-item clickable v-close-popup>
                   <q-item-section>
-                    <q-item-label>Belt Cleaning</q-item-label>
-                  </q-item-section>
-                </q-item>
-
-                <q-item clickable v-close-popup>
-                  <q-item-section>
-                    <q-item-label>Belt Splicing Presses</q-item-label>
-                  </q-item-section>
-                </q-item>
-
-                <q-item clickable v-close-popup>
-                  <q-item-section>
-                    <q-item-label>Belt Splicing Services, Materials & Tools</q-item-label>
-                  </q-item-section>
-                </q-item>
-
-                <q-item clickable v-close-popup>
-                  <q-item-section>
-                    <q-item-label>Conveyor Belting</q-item-label>
-                  </q-item-section>
-                </q-item>
-
-                <q-item clickable v-close-popup>
-                  <q-item-section>
-                    <q-item-label>Hand Built Mining & Industrial Hose</q-item-label>
-                  </q-item-section>
-                </q-item>
-
-                <q-item clickable v-close-popup>
-                  <q-item-section>
-                    <q-item-label>Idler Systems</q-item-label>
-                  </q-item-section>
-                </q-item>
-
-                <q-item clickable v-close-popup>
-                  <q-item-section>
-                    <q-item-label>Mill Liners</q-item-label>
-                  </q-item-section>
-                </q-item>
-
-                <q-item clickable v-close-popup>
-                  <q-item-section>
-                    <q-item-label>Pulley Lagging</q-item-label>
-                  </q-item-section>
-                </q-item>
-
-                <q-item clickable v-close-popup>
-                  <q-item-section>
-                    <q-item-label>Technical Advisory</q-item-label>
-                  </q-item-section>
-                </q-item>
-
-                <q-item clickable v-close-popup>
-                  <q-item-section>
-                    <q-item-label>Rema Tip Top Academy</q-item-label>
+                    <q-item-label>Articles</q-item-label>
                   </q-item-section>
                 </q-item>
 
               </q-list>
             </q-btn-dropdown>
-            
-            <q-route-tab href="https://rema-tiptop.de/en/" target="_blank" label="International" class="aLink"/>
-            <q-route-tab to="/contact" label="Contact Us" class="aLink"/>
-
-            <!-- Need a click event when the search tab is clicked -->
-            <q-tab name="search" @click="onSearchClick" class="aLink" icon="search"/>  
-              
+            <q-btn
+              flat
+              label="International"
+              class="layout-external-button"
+              href="https://rema-tiptop.de/en/"
+              target="_blank"
+              rel="noopener"
+            />
+            <q-route-tab to="/contact" label="Contact Us" />
+            <q-btn
+              flat
+              round
+              dense
+              icon="search"
+              aria-label="Search"
+              @click="onSearchClick"
+            />
           </q-tabs>
-        </q-toolbar>
-      </section>
+        </div>
+      </q-toolbar>
     </q-header>
 
-    
+    <q-drawer v-model="drawerOpen" bordered :width="280" class="bg-white">
+      <q-list padding>
+        <q-item to="/" clickable v-close-popup @click="drawerOpen = false">
+          <q-item-section>Home</q-item-section>
+        </q-item>
+        <q-expansion-item
+          label="About Rema Tip Top"
+          :header-class="sectionHeaderClass(aboutLinks)"
+        >
+          <q-item
+            v-for="item in aboutLinks"
+            :key="item.to"
+            :to="item.to"
+            clickable
+            active-class="layout-drawer__item--active"
+            v-close-popup
+            @click="drawerOpen = false"
+          >
+            <q-item-section>{{ item.label }}</q-item-section>
+          </q-item>
+        </q-expansion-item>
+        <q-expansion-item
+          label="Products"
+          :header-class="sectionHeaderClass(productLinks)"
+        >
+          <q-item
+            v-for="item in productLinks"
+            :key="item.to"
+            :to="item.to"
+            clickable
+            active-class="layout-drawer__item--active"
+            v-close-popup
+            @click="drawerOpen = false"
+          >
+            <q-item-section>{{ item.label }}</q-item-section>
+          </q-item>
+        </q-expansion-item>
+        <q-item
+          to="/contact"
+          clickable
+          active-class="layout-drawer__item--active"
+          v-close-popup
+          @click="drawerOpen = false"
+        >
+          <q-item-section>Contact Us</q-item-section>
+        </q-item>
+        <q-item
+          clickable
+          tag="a"
+          href="https://rema-tiptop.de/en/"
+          target="_blank"
+          rel="noopener"
+        >
+          <q-item-section>International</q-item-section>
+        </q-item>
+      </q-list>
+    </q-drawer>
 
     <q-page-container>
       <router-view />
     </q-page-container>
 
-    <!-- Footer mimicking the 3-column layout -->
-    <q-footer v-model="showFooter" class="bg-grey-10 text-grey-4 q-pa-xl transition-footer ">
+    <footer class="site-footer bg-grey-10 text-grey-4 q-pa-xl">
       <div class="row q-col-gutter-lg">
-        <!-- Column 1 -->
-        <div class="col-12 col-md-4">
-          <div class="text-h6 text-white q-mb-md">REMA TIP TOP Important Info</div>
-          <q-list dense>
-            <q-item clickable v-ripple class="q-px-none">
-              <q-item-section>PAIA</q-item-section>
-            </q-item>
-            <q-item clickable v-ripple class="q-px-none">
-              <q-item-section>Rema Tip Top Privacy Policy</q-item-section>
-            </q-item>
-            <q-item clickable v-ripple class="q-px-none">
-              <q-item-section>T&C of Sale & Delivery</q-item-section>
-            </q-item>
-            <q-item clickable v-ripple class="q-px-none">
-              <q-item-section>T&C of Purchase</q-item-section>
-            </q-item>
-            <q-item clickable v-ripple class="q-px-none">
-              <q-item-section>T&C of Website Use</q-item-section>
+        <div
+          v-for="column in footerColumns"
+          :key="column.title"
+          class="col-12 col-md-4"
+        >
+          <div class="text-h6 text-white q-mb-md">{{ column.title }}</div>
+          <q-list v-if="column.items" dense>
+            <q-item v-for="item in column.items" :key="item" class="q-px-none">
+              <q-item-section>{{ item }}</q-item-section>
             </q-item>
           </q-list>
-        </div>
-
-        <!-- Column 2 -->
-        <div class="col-12 col-md-4">
-          <div class="text-h6 text-white q-mb-md">REMA TIP TOP Head Office</div>
-          <div class="q-mb-sm">
-            <strong>Physical Address:</strong><br />
-            Corner Edinburgh (No.1) & Van Dyk Road, Benoni, 1501
-          </div>
-          <div class="q-mb-sm">
-            <strong>Postal Address:</strong><br />
-            Private Bag X 027, Benoni, 1500
-          </div>
-          <div class="q-mb-sm">
-            <strong>Telephone:</strong><br />
-            +27 10 880 4744
-          </div>
-        </div>
-
-        <!-- Column 3 -->
-        <div class="col-12 col-md-4">
-          <div class="text-h6 text-white q-mb-md">REMA TIP TOP Manufacturing Branch</div>
-          <div class="q-mb-sm">
-            <strong>Physical Address:</strong><br />
-            Induna Mills Road, Howick, 3290
-          </div>
-          <div class="q-mb-sm">
-            <strong>Postal Address:</strong><br />
-            Private Bag 29, Howick, 3290
-          </div>
-          <div class="q-mb-sm">
-            <strong>Telephone:</strong><br />
-            +27 (0) 33 239 7200
+          <div v-else>
+            <div v-for="line in column.lines" :key="line.label" class="q-mb-sm">
+              <strong>{{ line.label }}</strong
+              ><br />{{ line.value }}
+            </div>
           </div>
         </div>
       </div>
-    </q-footer>
+    </footer>
   </q-layout>
 </template>
 
-<style>
-.aLink:hover {
-  cursor: pointer;
-  
-  color: red;
-  border: none;
+<script setup>
+import { ref } from 'vue'
+import { useRoute } from 'vue-router'
+import logo from '@/assets/RemaTipTopLogo.png'
+
+const drawerOpen = ref(false)
+const route = useRoute()
+
+const aboutLinks = [
+  { label: 'Vision & Mission', to: '/vision-mission' },
+  { label: 'Our Presence', to: '/our-presence' },
+  { label: 'Manufacturing Plant', to: '/manufacturing-plant' },
+  { label: 'ISO-Certified Company', to: '/iso-certified' },
+  { label: 'Our Brands & Services', to: '/our-brands-services' }
+]
+
+const productLinks = [
+  { label: 'Adhesive Systems', to: '/products/adhesive-systems' },
+  { label: 'Automotive', to: '/products/automotive' },
+  { label: 'Belt Cleaning', to: '/products/belt-cleaning' },
+  { label: 'Belt Splicing Presses', to: '/products/belt-splicing-presses' },
+  {
+    label: 'Belt Splicing Services, Materials & Tools',
+    to: '/products/belt-splicing-services-materials-tools'
+  },
+  { label: 'Conveyor Belting', to: '/products/conveyor-belting' },
+  {
+    label: 'Hand Built Mining & Industrial Hose',
+    to: '/products/hand-built-mining-industrial-hose'
+  },
+  { label: 'Idler Systems', to: '/products/idler-systems' },
+  { label: 'Mill Liners', to: '/products/mill-liners' },
+  { label: 'Pulley Lagging', to: '/products/pulley-lagging' },
+  { label: 'Technical Advisory', to: '/products/technical-advisory' },
+  { label: 'Rema Tip Top Academy', to: '/products/rema-tip-top-academy' }
+]
+
+const socialLinks = [
+  { icon: 'fab fa-linkedin', label: 'LinkedIn' },
+  { icon: 'fab fa-instagram', label: 'Instagram' },
+  { icon: 'fab fa-facebook-f', label: 'Facebook' }
+]
+
+const footerColumns = [
+  {
+    title: 'REMA TIP TOP Important Info',
+    items: [
+      'PAIA',
+      'Rema Tip Top Privacy Policy',
+      'T&C of Sale & Delivery',
+      'T&C of Purchase',
+      'T&C of Website Use'
+    ]
+  },
+  {
+    title: 'REMA TIP TOP Head Office',
+    lines: [
+      {
+        label: 'Physical Address:',
+        value: 'Corner Edinburgh (No.1) & Van Dyk Road, Benoni, 1501'
+      },
+      { label: 'Postal Address:', value: 'Private Bag X 027, Benoni, 1500' },
+      { label: 'Telephone:', value: '+27 10 880 4744' }
+    ]
+  },
+  {
+    title: 'REMA TIP TOP Manufacturing Branch',
+    lines: [
+      { label: 'Physical Address:', value: 'Induna Mills Road, Howick, 3290' },
+      { label: 'Postal Address:', value: 'Private Bag 29, Howick, 3290' },
+      { label: 'Telephone:', value: '+27 (0) 33 239 7200' }
+    ]
+  }
+]
+
+function isSectionActive(links) {
+  return links.some(link => route.path.startsWith(link.to))
+}
+
+function sectionHeaderClass(links) {
+  return isSectionActive(links)
+    ? 'layout-drawer__section layout-drawer__section--active'
+    : 'layout-drawer__section'
+}
+
+function onSearchClick() {}
+</script>
+
+<style scoped>
+.layout-contact-bar {
+  min-height: 44px;
+  padding: 0 1rem;
+  font-size: 0.75rem;
+}
+
+.layout-contact-bar__inner,
+.layout-toolbar__inner {
+  width: min(100%, 1384px);
+  margin: 0 auto;
+}
+
+.layout-contact-bar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.site-footer {
+  position: static;
+  width: 100%;
+}
+
+.layout-contact-details,
+.layout-social-links {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.layout-contact-details a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.layout-contact-details a:hover {
+  color: white;
+}
+
+.layout-toolbar {
+  min-height: 118px;
+  padding: 0 1rem;
+}
+
+.layout-toolbar__inner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.layout-logo {
+  flex: 0 0 440px;
+}
+
+.layout-logo img {
+  display: block;
+  width: 440px;
+  max-width: 100%;
+  height: 80px;
+  object-fit: cover;
+  object-position: top left;
+}
+
+.layout-logo a {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.layout-tabs {
+  flex: 1;
+  min-height: 42px;
+  text-transform: uppercase;
+}
+
+.layout-tabs :deep(.q-tab),
+.layout-tabs :deep(.q-btn:not(.q-btn--round)),
+.layout-external-button,
+.layout-menu-button {
+  min-height: 36px;
+  padding: 0 16px;
+  border-radius: 2px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.layout-tabs :deep(.q-tab:hover),
+.layout-tabs :deep(.q-btn:not(.q-btn--round):hover),
+.layout-external-button:hover,
+.layout-menu-button:hover,
+.layout-menu-button--active {
+  color: #d71920 !important;
+  background-color: rgb(215 25 32 / 8%);
+}
+
+.layout-menu-button {
+  color: inherit;
+}
+
+.layout-tabs :deep(.q-tab--active) {
+  color: #d71920;
+}
+
+.layout-submenu-item--active,
+.layout-drawer__item--active,
+.layout-drawer__section--active {
+  color: #d71920;
+  background-color: rgb(215 25 32 / 8%);
+}
+
+.layout-drawer__section--active {
+  font-weight: 500;
+}
+
+@media (max-width: 599px) {
+  .layout-contact-bar {
+    padding: 0.4rem 0.75rem;
+  }
+
+  .layout-contact-bar__inner {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .layout-contact-details {
+    flex-wrap: wrap;
+    gap: 0.25rem 0.75rem;
+  }
+
+  .layout-social-links {
+    display: none;
+  }
+
+  .layout-toolbar {
+    min-height: 64px;
+    padding: 0 0.75rem;
+  }
+
+  .layout-toolbar__inner {
+    width: 100%;
+  }
+
+  .layout-logo {
+    flex: 1;
+  }
+
+  .layout-logo img {
+    width: min(100%, 260px);
+    height: 48px;
+  }
+
+  .site-footer {
+    padding: 2rem 1rem;
+  }
 }
 </style>
-
-<script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
-
-const showFooter = ref(false)
-const scrollThreshold = 1000// Pixels to scroll before showing footer
-
-const handleScroll = () => {
-  // Checks how far the user has scrolled down
-  const scrollTop = window.scrollY || document.documentElement.scrollTop
-  showFooter.value = scrollTop > scrollThreshold
-}
-
-onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
-})
-</script>
 
 
 

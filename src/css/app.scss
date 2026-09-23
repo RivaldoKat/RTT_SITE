@@ -1,1 +1,70 @@
-// app global css
+body {
+  overflow-x: hidden;
+}
+
+.corporate-page {
+  color: #333;
+}
+
+.corporate-container {
+  width: min(100% - 2rem, 1200px);
+  margin: 0 auto;
+  padding: 2rem 0 3rem;
+}
+
+.corporate-hero {
+  width: 100%;
+}
+
+.corporate-section-heading {
+  margin-bottom: 2rem;
+}
+
+.corporate-heading {
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.dotted-separator {
+  width: 100%;
+  border-bottom: 4px dotted #b71c1c;
+}
+
+.global-corporate-font {
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.body-text-style {
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+}
+
+.line-height-relaxed p {
+  line-height: 1.65;
+  margin-bottom: 0.75rem;
+}
+
+.corporate-banner {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: #ff2a2a;
+  font-family: 'Roboto', sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.85rem);
+  letter-spacing: 0.05em;
+  line-height: 1.3;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.pending-page__content {
+  min-height: 50vh;
+  display: grid;
+  align-content: center;
+}
+
+@media (max-width: 599px) {
+  .corporate-container {
+    width: min(100% - 1.5rem, 1200px);
+    padding-top: 1.25rem;
+  }
+}

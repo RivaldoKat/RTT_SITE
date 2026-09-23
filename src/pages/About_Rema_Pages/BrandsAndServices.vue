@@ -1,15 +1,7 @@
 <template>
-  <div class="row justify-between">
-    <q-parallax src="src/assets/Material-Processing.png" >
-    </q-parallax>
-  </div>
-  <div>
-    <p>Brands Page</p>
-    <p>..........</p>
-  </div>
-
+  <PendingPage title="Our Brands & Services" />
 </template>
 
 <script setup>
-//
+import PendingPage from '@/components/PendingPage.vue'
 </script>
