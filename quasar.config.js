@@ -40,10 +40,10 @@ export default defineConfig((/* ctx */) => {
       // https://v2.quasar.dev/quasar-cli-vite/page-routing-with-vue-router#filename-based-routing
       // filenameBasedRouting: true,
 
-      vueRouterMode: 'hash' // available values: 'hash', 'history'
+      vueRouterMode: 'hash', // available values: 'hash', 'history'
       // vueRouterBase,
 
-      // publicPath: '/',
+      publicPath: '/https://github.com/RivaldoKat/RTT_SITE/',
       // define: {},
       // defineEnv: {}
       // ignorePublicFolder: true,
