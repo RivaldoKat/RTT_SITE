@@ -2,38 +2,67 @@
   <q-page class="product-detail-page">
     <div class="product-detail__hero">
       <q-img :src="product.heroImage" :alt="product.title" fit="cover" />
+      <div class="product-detail__hero-overlay">
+        <div class="product-detail__hero-kicker"
+          >REMA TIP TOP | INDUSTRIAL SOLUTIONS</div
+        >
+        <div class="product-detail__hero-title">{{ product.title }}</div>
+      </div>
     </div>
 
     <main
       class="corporate-container product-detail__content global-corporate-font"
     >
-      <h1 class="product-detail__title">{{ product.title }}</h1>
-      <div class="dotted-separator q-mb-xl" />
+      <div class="product-detail__breadcrumbs"
+        >Products / {{ product.title }}</div
+      >
 
-      <section class="product-detail__intro">
-        <p v-for="paragraph in product.intro" :key="paragraph">{{
-          paragraph
-        }}</p>
+      <section class="product-detail__intro corporate-surface">
+        <div>
+          <div class="product-detail__eyebrow">Engineered for uptime</div>
+          <h1 class="product-detail__title">{{ product.title }}</h1>
+        </div>
+        <div class="product-detail__intro-copy">
+          <p v-for="paragraph in product.intro" :key="paragraph">{{
+            paragraph
+          }}</p>
+        </div>
       </section>
 
       <div class="product-detail__grid">
-        <section class="product-detail__panel">
+        <section class="product-detail__panel product-detail__panel--features">
+          <div class="product-detail__panel-kicker">Why it matters</div>
           <h2>{{ product.sectionTitle }}</h2>
           <ul>
-            <li v-for="feature in product.features" :key="feature">{{
-              feature
-            }}</li>
+            <li v-for="feature in product.features" :key="feature">
+              <q-icon name="north_east" size="18px" />
+              <span>{{ feature }}</span>
+            </li>
           </ul>
         </section>
 
-        <section class="product-detail__panel product-detail__image-panel">
+        <section
+          class="product-detail__panel product-detail__image-panel corporate-surface"
+        >
+          <div class="product-detail__image-label">Application focus</div>
           <q-img
             :src="product.detailImage"
             :alt="`${product.title} product`"
             fit="contain"
           />
+          <div class="product-detail__image-caption"
+            >Reliable performance across demanding operating environments.</div
+          >
         </section>
       </div>
+
+      <section class="product-detail__footer-note">
+        <q-icon name="public" size="22px" />
+        <span
+          >Backed by REMA TIP TOP expertise across 176+ countries and local
+          technical support.</span
+        >
+      </section>
 
       <CorporateBanner class="q-mt-xl" />
     </main>
@@ -52,9 +81,6 @@ import conveyorImage from '@/assets/Conveyor-Belting.jpg'
 import miningImage from '@/assets/mining.jpg'
 import plantImage from '@/assets/howick.jpg'
 import processingImage from '@/assets/Material-Processing.png'
-import picCutOne from '@/assets/PicCutOne.jpg'
-import picCutThree from '@/assets/PicCutThree.jpg'
-import picCutTwo from '@/assets/PicCutTwo.jpg'
 import surfaceProtectionImage from '@/assets/Surface-Protection.jpg'
 
 const route = useRoute()
@@ -135,7 +161,7 @@ const productCatalog = {
   'belt-splicing-services-materials-tools': {
     title: 'Belt Splicing Services, Materials & Tools',
     heroImage: processingImage,
-    detailImage: picCutTwo,
+    detailImage: automotiveImage,
     intro: [
       'REMA TIP TOP products and services increase the longevity and efficiency of belt conveyor systems.',
       'Our service teams are trained in conveyor belt repairs, hot and cold splicing, textile reinforced belting and pulley lagging.'
@@ -166,8 +192,8 @@ const productCatalog = {
   },
   'hand-built-mining-industrial-hose': {
     title: 'Hand Built Mining & Industrial Hose',
-    heroImage: picCutThree,
-    detailImage: picCutThree,
+    heroImage: plantImage,
+    detailImage: plantImage,
     intro: [
       'Our hand-built hose range is developed for demanding mining and industrial applications where durability and reliable performance are essential.'
     ],
@@ -176,8 +202,8 @@ const productCatalog = {
   },
   'idler-systems': {
     title: 'Idler Systems',
-    heroImage: picCutOne,
-    detailImage: picCutOne,
+    heroImage: conveyorImage,
+    detailImage: conveyorImage,
     intro: [
       'REMA TIP TOP offer a complete range of steel, impact and HDPE idler rollers together with standard, self-aligning and suspended conveyor idler frames.'
     ],
@@ -265,6 +291,7 @@ const product = computed(
 
 <style scoped>
 .product-detail__hero {
+  position: relative;
   height: clamp(220px, 30vw, 360px);
   overflow: hidden;
 }
@@ -273,33 +300,78 @@ const product = computed(
   filter: saturate(0.8);
 }
 
+.product-detail__hero-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  padding: clamp(1.5rem, 5vw, 4rem) max(1rem, calc((100% - 1200px) / 2));
+  background: linear-gradient(90deg, rgb(8 20 27 / 72%), rgb(8 20 27 / 12%));
+  color: #fff;
+}
+
+.product-detail__hero-kicker,
+.product-detail__eyebrow,
+.product-detail__panel-kicker,
+.product-detail__image-label {
+  color: #df2b24;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.product-detail__hero-kicker {
+  color: #fff;
+  opacity: 0.82;
+}
+
+.product-detail__hero-title {
+  max-width: 760px;
+  margin-top: 0.5rem;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
+  line-height: 1.02;
+}
+
 .product-detail__content {
-  padding-top: 1rem;
+  padding-top: 2.5rem;
+}
+
+.product-detail__breadcrumbs {
+  margin-bottom: 1.25rem;
+  color: #7a858b;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .product-detail__title {
   margin: 0;
-  color: #222;
-  font-size: 1.25rem;
-  font-weight: 600;
-}
-
-.product-detail__intro,
-.product-detail__panel {
-  padding: 1rem;
-  background: white;
-  box-shadow: 0 5px 18px rgb(0 0 0 / 8%);
+  color: #17242c;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.7rem, 3vw, 2.7rem);
+  line-height: 1.08;
 }
 
 .product-detail__intro {
   margin-bottom: 1rem;
-  color: #666;
-  font-size: 0.85rem;
-  line-height: 1.55;
+  display: grid;
+  grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.8fr);
+  gap: 2rem;
+  padding: 1.75rem 2rem;
+  border-left: 4px solid #ed3028;
+}
+
+.product-detail__intro-copy {
+  color: #5d6a71;
+  font-size: 1rem;
+  line-height: 1.7;
 }
 
 .product-detail__intro p {
-  margin: 0 0 0.75rem;
+  margin: 0 0 0.8rem;
 }
 
 .product-detail__intro p:last-child {
@@ -314,43 +386,85 @@ const product = computed(
 
 .product-detail__panel {
   min-height: 260px;
+  padding: 1.75rem;
+  background: #f3f5f4;
+  border-top: 4px solid #ed3028;
 }
 
 .product-detail__panel h2 {
-  margin: 0 0 0.75rem;
-  color: #ff2a2a;
-  font-size: 1rem;
-  font-weight: 400;
+  margin: 0.5rem 0 1.5rem;
+  color: #17242c;
+  font-size: 1.45rem;
+  font-weight: 700;
 }
 
 .product-detail__panel ul {
   display: grid;
-  gap: 0.5rem;
+  gap: 0.85rem;
   padding: 0;
   margin: 0;
   list-style: none;
-  color: #555;
-  font-size: 0.85rem;
+  color: #5d6a71;
+  font-size: 0.92rem;
 }
 
-.product-detail__panel li::before {
-  margin-right: 0.6rem;
-  color: #ff2a2a;
-  content: '↗';
+.product-detail__panel li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  line-height: 1.45;
+}
+
+.product-detail__panel li .q-icon {
+  flex: 0 0 auto;
+  color: #ed3028;
 }
 
 .product-detail__image-panel {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  background: #fff;
+  text-align: center;
 }
 
 .product-detail__image-panel .q-img {
   width: 100%;
-  height: 100%;
+  height: 220px;
+  margin: 0.5rem 0;
+}
+
+.product-detail__image-caption {
+  max-width: 340px;
+  color: #68757d;
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.product-detail__footer-note {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  padding: 1rem 1.25rem;
+  background: #17242c;
+  color: #fff;
+  font-size: 0.85rem;
+}
+
+.product-detail__footer-note .q-icon {
+  flex: 0 0 auto;
+  color: #ed3028;
 }
 
 @media (max-width: 700px) {
+  .product-detail__intro {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+
   .product-detail__grid {
     grid-template-columns: 1fr;
   }

@@ -14,10 +14,38 @@ body {
 
 .corporate-hero {
   width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.corporate-hero__veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgb(10 22 29 / 55%), transparent 65%);
+}
+
+.corporate-hero__label {
+  position: absolute;
+  bottom: 1.5rem;
+  left: max(1rem, calc((100% - 1200px) / 2));
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
 .corporate-section-heading {
   margin-bottom: 2rem;
+}
+
+.corporate-section-heading__eyebrow {
+  margin-bottom: 0.5rem;
+  color: #c5221d;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 .corporate-heading {
@@ -26,7 +54,7 @@ body {
 
 .dotted-separator {
   width: 100%;
-  border-bottom: 4px dotted #b71c1c;
+  border-bottom: 3px dotted #c5221d;
 }
 
 .global-corporate-font {
@@ -42,6 +70,16 @@ body {
 .line-height-relaxed p {
   line-height: 1.65;
   margin-bottom: 0.75rem;
+}
+
+.corporate-surface {
+  background: #fff;
+  border: 1px solid #e6eaeb;
+  box-shadow: 0 14px 34px rgb(22 35 42 / 7%);
+}
+
+.corporate-page p {
+  color: #5d6a71;
 }
 
 .corporate-banner {

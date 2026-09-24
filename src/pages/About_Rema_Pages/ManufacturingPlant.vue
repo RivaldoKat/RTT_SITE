@@ -2,6 +2,24 @@
   <CorporatePageShell :hero-image="plantImage">
     <div class="global-corporate-font text-grey-9 text-body1">
       <CorporateSectionHeading title="Manufacturing Plant In Howick" />
+      <section class="plant-intro corporate-surface">
+        <div>
+          <div class="section-kicker">Our manufacturing advantage</div>
+          <h1>Southern African production. Global performance.</h1>
+          <p
+            >From Howick, our teams manufacture and test industrial rubber
+            products for demanding markets around the world.</p
+          >
+        </div>
+        <div class="plant-stats">
+          <div><strong>52 900 m²</strong><span>under cover</span></div>
+          <div><strong>1921</strong><span>factory opened</span></div>
+          <div
+            ><strong>5 400 kN/m</strong
+            ><span>belt strength capability</span></div
+          >
+        </div>
+      </section>
       <div
         class="q-gutter-y-lg q-mb-xl text-weight-light line-height-relaxed body-text-style"
       >
@@ -58,6 +76,7 @@ const paragraphs = [
 <style scoped>
 .responsibilities-list {
   display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.75rem;
 }
 
@@ -67,5 +86,72 @@ const paragraphs = [
   gap: 0.6rem;
   color: #333;
   font-size: 0.95rem;
+  padding: 0.8rem 1rem;
+  background: #f3f5f4;
+  border-left: 3px solid #ed3028;
+}
+
+.plant-intro {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding: 2rem;
+}
+
+.section-kicker {
+  margin-bottom: 0.6rem;
+  color: #c5221d;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.plant-intro h1 {
+  margin: 0;
+  color: #17242c;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.8rem, 3vw, 2.7rem);
+  line-height: 1.08;
+}
+
+.plant-intro p {
+  line-height: 1.6;
+}
+
+.plant-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  align-items: center;
+}
+
+.plant-stats div {
+  display: grid;
+  gap: 0.35rem;
+  padding-left: 1rem;
+  border-left: 1px solid #d9dfe1;
+}
+
+.plant-stats strong {
+  color: #17242c;
+  font-size: 1.1rem;
+}
+
+.plant-stats span {
+  color: #748087;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 767px) {
+  .plant-intro,
+  .responsibilities-list {
+    grid-template-columns: 1fr;
+  }
+
+  .plant-stats {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

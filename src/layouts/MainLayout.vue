@@ -195,6 +195,82 @@
       <router-view />
     </q-page-container>
 
+    <q-dialog v-model="searchOpen" class="site-search-dialog">
+      <q-card class="site-search">
+        <div class="site-search__header">
+          <div>
+            <div class="site-search__eyebrow"
+              >REMA TIP TOP / FIND YOUR SOLUTION</div
+            >
+            <h2>Search the global network</h2>
+          </div>
+          <q-btn
+            flat
+            round
+            dense
+            icon="close"
+            aria-label="Close search"
+            class="site-search__close"
+            @click="searchOpen = false"
+          />
+        </div>
+        <q-form class="site-search__form" @submit.prevent="openFirstResult">
+          <q-input
+            v-model="searchQuery"
+            autofocus
+            borderless
+            clearable
+            debounce="120"
+            input-class="site-search__input"
+            placeholder="Search products, services and company information"
+            aria-label="Search products, services and company information"
+          >
+            <template #append>
+              <q-icon name="search" color="grey-7" />
+            </template>
+          </q-input>
+        </q-form>
+        <div v-if="!searchQuery" class="site-search__popular">
+          <span>Popular searches</span>
+          <button
+            v-for="term in popularSearches"
+            :key="term"
+            type="button"
+            @click="searchQuery = term"
+            >{{ term }}</button
+          >
+        </div>
+        <div v-if="searchQuery" class="site-search__results">
+          <div class="site-search__result-count">
+            {{ searchResults.length }}
+            {{ searchResults.length === 1 ? 'result' : 'results' }}
+          </div>
+          <button
+            v-for="result in searchResults"
+            :key="result.to"
+            type="button"
+            class="site-search__result"
+            @click="goToResult(result.to)"
+          >
+            <q-icon :name="result.icon" size="20px" />
+            <span>
+              <strong>{{ result.label }}</strong>
+              <small>{{ result.group }}</small>
+              <em>{{ result.description }}</em>
+            </span>
+            <q-icon name="arrow_forward" size="18px" />
+          </button>
+          <p v-if="!searchResults.length" class="site-search__empty">
+            No matching pages found.
+          </p>
+        </div>
+        <div v-else class="site-search__hint">
+          <q-icon name="keyboard_return" /> Press Enter to open the first match
+          <span>Esc to close</span>
+        </div>
+      </q-card>
+    </q-dialog>
+
     <footer class="site-footer bg-grey-10 text-grey-4 q-pa-xl">
       <div class="row q-col-gutter-lg">
         <div
@@ -221,12 +297,16 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { computed, ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import logo from '@/assets/RemaTipTopLogo.png'
+import { searchIndex } from '@/data/searchIndex'
 
 const drawerOpen = ref(false)
+const searchOpen = ref(false)
+const searchQuery = ref('')
 const route = useRoute()
+const router = useRouter()
 
 const aboutLinks = [
   { label: 'Vision & Mission', to: '/vision-mission' },
@@ -255,6 +335,25 @@ const productLinks = [
   { label: 'Pulley Lagging', to: '/products/pulley-lagging' },
   { label: 'Technical Advisory', to: '/products/technical-advisory' },
   { label: 'Rema Tip Top Academy', to: '/products/rema-tip-top-academy' }
+]
+
+const searchResults = computed(() => {
+  const query = searchQuery.value.trim().toLowerCase()
+  if (!query) return []
+  return searchIndex
+    .map(page => ({
+      ...page,
+      searchText:
+        `${page.label} ${page.group} ${page.description} ${page.keywords}`.toLowerCase()
+    }))
+    .filter(page => page.searchText.includes(query))
+})
+
+const popularSearches = [
+  'Conveyor Belting',
+  'ISO Certified',
+  'Our Presence',
+  'Automotive'
 ]
 
 const socialLinks = [
@@ -305,7 +404,19 @@ function sectionHeaderClass(links) {
     : 'layout-drawer__section'
 }
 
-function onSearchClick() {}
+function onSearchClick() {
+  searchQuery.value = ''
+  searchOpen.value = true
+}
+
+function goToResult(path) {
+  searchOpen.value = false
+  router.push(path)
+}
+
+function openFirstResult() {
+  if (searchResults.value[0]) goToResult(searchResults.value[0].to)
+}
 </script>
 
 <style scoped>
@@ -424,6 +535,196 @@ function onSearchClick() {}
   background-color: rgb(215 25 32 / 8%);
 }
 
+.site-search {
+  position: relative;
+  width: min(760px, calc(100vw - 2rem));
+  padding: 2rem;
+  background: #17242c;
+  border: 1px solid rgb(255 255 255 / 18%);
+  border-radius: 14px;
+  color: #fff;
+  box-shadow: 0 28px 80px rgb(0 0 0 / 35%);
+}
+
+.site-search__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.site-search__eyebrow {
+  color: #ed3028;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+.site-search h2 {
+  margin: 0.4rem 0 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 400;
+}
+
+.site-search__close {
+  color: #fff;
+  background: rgb(255 255 255 / 8%);
+}
+
+.site-search__form {
+  padding: 0 1rem;
+  background: #fff;
+  border-radius: 6px;
+}
+
+.site-search__form :deep(.q-field__control) {
+  height: 56px;
+}
+
+.site-search__form :deep(.q-field__native),
+.site-search__form :deep(.site-search__input),
+.site-search__form :deep(input) {
+  color: #17242c !important;
+  caret-color: #ed3028;
+  font-size: 1rem;
+}
+
+.site-search__form :deep(input::placeholder) {
+  color: #68757d !important;
+  opacity: 1;
+}
+
+.site-search__form :deep(.q-field__control:before),
+.site-search__form :deep(.q-field__control:after) {
+  border: 0;
+}
+
+.site-search__form :deep(.q-field__native:focus) {
+  color: #17242c !important;
+}
+
+.site-search__results {
+  display: grid;
+  gap: 0.5rem;
+  max-height: 45vh;
+  padding-top: 0.75rem;
+  overflow-y: auto;
+}
+
+.site-search__result-count {
+  padding: 0.6rem 0.8rem;
+  color: #9eabb0;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.site-search__result {
+  display: grid;
+  grid-template-columns: 24px 1fr 20px;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.8rem;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.site-search__result:hover,
+.site-search__result:focus-visible {
+  background: rgb(255 255 255 / 9%);
+  outline: 2px solid #ed3028;
+  outline-offset: -2px;
+}
+
+.site-search__result > .q-icon {
+  color: #ef3028;
+}
+
+.site-search__result strong,
+.site-search__result small {
+  display: block;
+}
+
+.site-search__result small,
+.site-search__hint,
+.site-search__empty {
+  color: #aeb6b9;
+  font-size: 0.8rem;
+}
+
+.site-search__result small {
+  margin-top: 0.2rem;
+}
+
+.site-search__result em {
+  display: block;
+  margin-top: 0.35rem;
+  color: #aeb6b9;
+  font-size: 0.78rem;
+  font-style: normal;
+  line-height: 1.4;
+}
+
+.site-search__hint,
+.site-search__empty {
+  margin: 1rem 0 0;
+  text-align: center;
+}
+
+.site-search__hint {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  color: #aeb6b9;
+  font-size: 0.78rem;
+}
+
+.site-search__hint span {
+  margin-left: 1rem;
+  color: #6f7d82;
+}
+
+.site-search__popular {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+
+.site-search__popular > span {
+  width: 100%;
+  margin-bottom: 0.15rem;
+  color: #9eabb0;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.site-search__popular button {
+  padding: 0.5rem 0.7rem;
+  border: 1px solid rgb(255 255 255 / 18%);
+  border-radius: 999px;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.78rem;
+}
+
+.site-search__popular button:hover,
+.site-search__popular button:focus-visible {
+  border-color: #ed3028;
+  outline: 0;
+  color: #fff;
+  background: #ed3028;
+}
+
 .layout-drawer__section--active {
   font-weight: 500;
 }
@@ -468,6 +769,19 @@ function onSearchClick() {}
 
   .site-footer {
     padding: 2rem 1rem;
+  }
+
+  .site-search {
+    padding: 1.25rem;
+  }
+
+  .site-search__hint {
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .site-search__hint span {
+    margin-left: 0;
   }
 }
 </style>

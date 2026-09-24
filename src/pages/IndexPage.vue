@@ -125,9 +125,6 @@ import conveyorImage from '@/assets/Conveyor-Belting.jpg'
 import miningImage from '@/assets/mining.jpg'
 import plantImage from '@/assets/howick.jpg'
 import processingImage from '@/assets/Material-Processing.png'
-import picCutOne from '@/assets/PicCutOne.jpg'
-import picCutThree from '@/assets/PicCutThree.jpg'
-import picCutTwo from '@/assets/PicCutTwo.jpg'
 import surfaceProtectionImage from '@/assets/Surface-Protection.jpg'
 
 const slide = ref(1)
@@ -138,12 +135,12 @@ let productsObserver
 
 const heroImages = [
   {
-    src: picCutOne,
+    src: conveyorImage,
     alt: 'Conveyor Belt',
     className: 'home-hero__image--large'
   },
-  { src: picCutTwo, alt: 'Tire', className: '' },
-  { src: picCutThree, alt: 'Cable', className: '' }
+  { src: automotiveImage, alt: 'Automotive tyre', className: '' },
+  { src: plantImage, alt: 'Manufacturing plant', className: '' }
 ]
 
 const carouselSlides = [
@@ -197,7 +194,7 @@ const productData = [
   ],
   [
     'Belt Splicing Services, Materials & Tools',
-    picCutTwo,
+    automotiveImage,
     'belt-splicing-services-materials-tools',
     'Over many years REMA TIP TOP has earned the reputation as the premier supplier of vulcanising systems for endless conveyor belt splicing.'
   ],
@@ -209,13 +206,13 @@ const productData = [
   ],
   [
     'Hand Built Mining and Industrial Hose',
-    picCutThree,
+    plantImage,
     'hand-built-mining-industrial-hose',
     'Mineral rich sands along Africa’s coastline have long been flooded and then sucked into processing plants using hoses developed at our manufacturing factory.'
   ],
   [
     'Idler Systems',
-    picCutOne,
+    conveyorImage,
     'idler-systems',
     'REMA TIP TOP offer a complete range of steel, impact and HDPE idler rollers together with standard, self-aligning and suspended conveyor idler frames.'
   ],
