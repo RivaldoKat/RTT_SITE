@@ -11,8 +11,17 @@
               ><q-icon name="mail" /> enquiries@rematiptop.co.za</a
             >
           </div>
-          <div class="cursor-pointer hover-text-white">
-            <q-icon name="mail" class="q-mr-xs" /> enquiries@rematiptop.co.za
+          <div class="layout-social-links">
+            <q-btn
+              v-for="social in socialLinks"
+              :key="social.icon"
+              flat
+              round
+              dense
+              :icon="social.icon"
+              size="sm"
+              :aria-label="social.label"
+            />
           </div>
         </div>
       </section>
@@ -46,69 +55,43 @@
             <q-btn-dropdown
               flat
               label="About Rema Tip Top"
-              hover
-              aria-haspopup="menu"
-              class="aLink"
-              
+              :class="[
+                'layout-menu-button',
+                { 'layout-menu-button--active': isSectionActive(aboutLinks) }
+              ]"
             >
-              <q-list role="menu">
-                <q-item to="/vision-mission/" clickable v-close-popup>
-                  <q-item-section>
-                    <q-item-label>Vision & Mission</q-item-label>
-                  </q-item-section>
-                </q-item>
-
-                <q-item to="/our-presence" clickable v-close-popup>
-                  <q-item-section>
-                    <q-item-label>Our Presence</q-item-label>
-                  </q-item-section>
-                </q-item>
-
-                <q-item to="/manufacturing-plant" clickable v-close-popup>
-                  <q-item-section>
-                    <q-item-label>Manufacturing Plant</q-item-label>
-                  </q-item-section>
-                </q-item>
-
-                <q-item to="/iso-certified" clickable v-close-popup>
-                  <q-item-section>
-                    <q-item-label>ISO-Certified Company</q-item-label>
-                  </q-item-section>
-                </q-item>
-
-                <q-item to="/our-brands-services" clickable v-close-popup>
-                  <q-item-section>
-                    <q-item-label>Our Brands & Services</q-item-label>
-                  </q-item-section>
+              <q-list>
+                <q-item
+                  v-for="item in aboutLinks"
+                  :key="item.to"
+                  :to="item.to"
+                  clickable
+                  active-class="layout-submenu-item--active"
+                  v-close-popup
+                >
+                  <q-item-section>{{ item.label }}</q-item-section>
                 </q-item>
               </q-list>
             </q-btn-dropdown>
             <q-btn-dropdown
               flat
               label="Products"
-              hover
-              aria-haspopup="menu"
-              class="aLink"
+              :class="[
+                'layout-menu-button',
+                { 'layout-menu-button--active': isSectionActive(productLinks) }
+              ]"
             >
-              <q-list role="menu">
-                <q-item clickable v-close-popup>
-                  <q-item-section>
-                    <q-item-label>Photos</q-item-label>
-                  </q-item-section>
+              <q-list>
+                <q-item
+                  v-for="item in productLinks"
+                  :key="item.to"
+                  :to="item.to"
+                  clickable
+                  active-class="layout-submenu-item--active"
+                  v-close-popup
+                >
+                  <q-item-section>{{ item.label }}</q-item-section>
                 </q-item>
-
-                <q-item clickable v-close-popup>
-                  <q-item-section>
-                    <q-item-label>Videos</q-item-label>
-                  </q-item-section>
-                </q-item>
-
-                <q-item clickable v-close-popup>
-                  <q-item-section>
-                    <q-item-label>Articles</q-item-label>
-                  </q-item-section>
-                </q-item>
-
               </q-list>
             </q-btn-dropdown>
             <q-btn
@@ -785,16 +768,3 @@ function openFirstResult() {
   }
 }
 </style>
-
-
-
-
-
-<!-- CASCADING STYLE SHEET -->
-.bg-dark.text-grey-4.row.justify-between.items-center.q-px-md {
-  padding-left: 16px;
-  padding-right: 16px;
-  display :flex;
-  flex-wrap: wrap;
-
-}
