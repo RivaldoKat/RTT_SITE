@@ -5,7 +5,10 @@
       :src="heroImage"
       :height="heroHeight"
       class="corporate-hero"
-    />
+    >
+      <div class="corporate-hero__veil" />
+      <div class="corporate-hero__label">REMA TIP TOP Africa</div>
+    </q-parallax>
     <main class="corporate-container">
       <slot />
     </main>

@@ -1,6 +1,15 @@
 <template>
   <CorporatePageShell :hero-image="visionMissionImage">
     <div class="global-corporate-font text-grey-9 text-body1">
+      <section class="vision-intro">
+        <div class="section-kicker">Purpose and direction</div>
+        <h1>Global know-how, delivered with local conviction.</h1>
+        <p
+          >We build long-term value through high-performance products,
+          customer-focused service, and a team that understands the industries
+          it serves.</p
+        >
+      </section>
       <CorporateSectionHeading title="Our Mission" />
       <div
         class="q-gutter-y-lg q-mb-xl text-weight-light line-height-relaxed body-text-style"
@@ -98,7 +107,7 @@ const sectors = [
 .sector-card {
   min-height: 180px;
   border: 1px solid #f0f0f0;
-  border-radius: 4px;
+  border-radius: 2px;
   box-shadow: 0 4px 20px rgb(0 0 0 / 4%);
   transition:
     transform 0.25s ease,
@@ -120,5 +129,37 @@ const sectors = [
   width: 100%;
   max-height: 520px;
   margin-bottom: 2rem;
+}
+
+.vision-intro {
+  max-width: 820px;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #d9dfe1;
+}
+
+.section-kicker {
+  margin-bottom: 0.6rem;
+  color: #c5221d;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.vision-intro h1 {
+  margin: 0;
+  color: #17242c;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(2rem, 4vw, 3.3rem);
+  line-height: 1.04;
+}
+
+.vision-intro p {
+  max-width: 650px;
+  margin: 1rem 0 0;
+  color: #68757d;
+  font-size: 1.05rem;
+  line-height: 1.6;
 }
 </style>
