@@ -43,7 +43,7 @@ export default defineConfig((/* ctx */) => {
       vueRouterMode: 'hash', // available values: 'hash', 'history'
       // vueRouterBase,
 
-      publicPath: '/https://github.com/RivaldoKat/RTT_SITE/',
+      publicPath: process.env.QCLI_PUBLIC_PATH || '/'
       // define: {},
       // defineEnv: {}
       // ignorePublicFolder: true,
