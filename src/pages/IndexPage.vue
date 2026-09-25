@@ -7,6 +7,8 @@
       infinite
       arrows
       navigation
+      swipeable
+      height="490px"
       control-color="red"
       :autoplay="autoplay"
       transition-prev="slide-right"
@@ -119,15 +121,20 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import africaMap from '@/assets/Afrique.png'
 import automotiveImage from '@/assets/Automotive-tyre.jpg'
-import cementImage from '@/assets/cement.jpg'
-import chemicalsImage from '@/assets/chemicals.jpg'
 import conveyorImage from '@/assets/Conveyor-Belting.jpg'
-import miningImage from '@/assets/mining.jpg'
-import plantImage from '@/assets/howick.jpg'
 import processingImage from '@/assets/Material-Processing.png'
 import surfaceProtectionImage from '@/assets/Surface-Protection.jpg'
+import MaterialProcessingImage from '@/assets/Material-Processing.png'
+import automotive from '@/assets/Automotive-01.jpg'
+import drax_power from '@/assets/Drax_Power.jpg'
+import hosehwk from '@/assets/Hose-Hwk.jpg'
+import adhesives  from '@/assets/adhesives.jpg'
+import beltingCleaning from '@/assets/belt-cleaning.jpg'
+import beltSplicingPresses from '@/assets/belt-presses.jpg'
+import beltSplicingServicesMaterialsTools from '@/assets/belt-splicing.jpg'
+import pulleylagging from '@/assets/pulley-lagging.jpg'
 
-const slide = ref(1)
+const slide = ref(3)
 const autoplay = ref(8000)
 const productsSection = ref(null)
 const productsVisible = ref(false)
@@ -135,12 +142,12 @@ let productsObserver
 
 const heroImages = [
   {
-    src: conveyorImage,
-    alt: 'Conveyor Belt',
+    src: drax_power,
+    alt: 'Drax Power Plant',
     className: 'home-hero__image--large'
   },
-  { src: automotiveImage, alt: 'Automotive tyre', className: '' },
-  { src: plantImage, alt: 'Manufacturing plant', className: '' }
+  { src: automotive, alt: 'Automotive tyre', className: '' },
+  { src: hosehwk, alt: 'Manufacturing plant', className: '' }
 ]
 
 const carouselSlides = [
@@ -164,49 +171,57 @@ const carouselSlides = [
     title: 'Automotive',
     subtitle:
       'REMA TIP TOP is a worldwide market leader in the tyre repair sector. In addition to an offering of tyre repair materials and tyre repair systems, we provide retreading and repair services meeting the highest standards of safety and quality.'
+  },
+
+  {
+    name: 4,
+    image: MaterialProcessingImage,
+    title: 'Material Processing',
+    subtitle:
+      'REMA TIP TOP supply a comprehensive range of products and services that can be used in the production of raw-materials, that transform industrial materials from a raw-material state into finished parts or products'
   }
 ]
 
 const productData = [
   [
     'Adhesive Systems',
-    chemicalsImage,
+    adhesives,
     'adhesive-systems',
     'REMA TIP TOP adhesive systems are available for a wide range of applications using materials developed over many years of scientific research.'
   ],
   [
     'Automotive',
-    automotiveImage,
+    automotive,
     'automotive',
     'REMA TIP TOP offers the Automotive sector a unique and comprehensive program consisting of customer-oriented services.'
   ],
   [
     'Belt Cleaning Systems',
-    surfaceProtectionImage,
+    beltingCleaning,
     'belt-cleaning',
     'REMA TIP TOP has developed a reputation for its high-quality conveyor belt splicing and repair service provider.'
   ],
   [
     'Belt Splicing Presses',
-    processingImage,
+    beltSplicingPresses,
     'belt-splicing-presses',
     'REMA TIP TOP has developed a reputation over the years as being one of the world’s foremost splicing companies.'
   ],
   [
     'Belt Splicing Services, Materials & Tools',
-    automotiveImage,
+    beltSplicingServicesMaterialsTools,
     'belt-splicing-services-materials-tools',
     'Over many years REMA TIP TOP has earned the reputation as the premier supplier of vulcanising systems for endless conveyor belt splicing.'
   ],
   [
     'Conveyor Belting',
-    conveyorImage,
+    drax_power,
     'conveyor-belting',
     'Rema Tip Top manufactures a comprehensive range of conveyor belting in the wholly owned factory situated on the banks of the Umgeni River.'
   ],
   [
     'Hand Built Mining and Industrial Hose',
-    plantImage,
+    hosehwk,
     'hand-built-mining-industrial-hose',
     'Mineral rich sands along Africa’s coastline have long been flooded and then sucked into processing plants using hoses developed at our manufacturing factory.'
   ],
@@ -218,27 +233,21 @@ const productData = [
   ],
   [
     'Mill Liners',
-    miningImage,
+    processingImage,
     'mill-liners',
-    'Reliable wear protection solutions for demanding mineral processing and material handling environments.'
+    'REMA TIP TOP prides itself on the manufacture and supply of Mill Liners. All our mill lining products are made to the highest-quality material and specifications. Specifically formulated compounds are available to suit customer requirements.'
   ],
   [
     'Pulley Lagging',
-    cementImage,
+    pulleylagging,
     'pulley-lagging',
-    'High-performance pulley lagging systems designed to improve traction, protect equipment and extend service life.'
+    'REMA TIP TOP lagging has been installed on some of the most demanded applications across the African continent. REMAGRIP™, REMALINE™ and REMASLEEVE™ all contain a CN bonding layer and when matched with SC2000™ or SC4000™ adhesives, the results are high initial tack and unsurpassed adhesion values whether installing on-site or in the workshop.'
   ],
   [
-    'Technical Advisory',
-    plantImage,
-    'technical-advisory',
-    'Practical technical support and application advice from experienced REMA TIP TOP specialists.'
-  ],
-  [
-    'Rema Tip Top Academy',
-    africaMap,
-    'rema-tip-top-academy',
-    'Training and knowledge sharing to help customers and service teams work safely and effectively.'
+    'Surface Protection',
+    surfaceProtectionImage,
+    'surface-protection',
+    'In many industries, raw and aggregated material can be highly abrasive resulting in damage and wear to unprotected machinery. REMA TIP TOP has a range of wear protection solutions suited to the plant area affected and the abrasive nature of the media being handled.'
   ]
 ]
 

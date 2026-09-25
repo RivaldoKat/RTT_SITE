@@ -75,13 +75,25 @@ import { useRoute } from 'vue-router'
 import CorporateBanner from '@/components/CorporateBanner.vue'
 import africaMap from '@/assets/Afrique.png'
 import automotiveImage from '@/assets/Automotive-tyre.jpg'
-import cementImage from '@/assets/cement.jpg'
-import chemicalsImage from '@/assets/chemicals.jpg'
 import conveyorImage from '@/assets/Conveyor-Belting.jpg'
-import miningImage from '@/assets/mining.jpg'
-import plantImage from '@/assets/howick.jpg'
 import processingImage from '@/assets/Material-Processing.png'
 import surfaceProtectionImage from '@/assets/Surface-Protection.jpg'
+import MaterialProcessingImage from '@/assets/Material-Processing.png'
+import automotive from '@/assets/Automotive-01.jpg'
+import drax_power from '@/assets/Drax_Power.jpg'
+import hosehwk from '@/assets/Hose-Hwk.jpg'
+import adhesives  from '@/assets/adhesives.jpg'
+import adhesiveheader  from '@/assets/adhesive.jpg'
+import beltingCleaning from '@/assets/belt-cleaning.jpg'
+import beltSplicingPresses from '@/assets/splicingpresses.jpg'
+import beltSplicingServicesMaterialsTools from '@/assets/splicing-1.jpg'
+import pulleylagging from '@/assets/pulley-lagging.jpg'
+import scaper from '@/assets/scaper.png'
+import tuv from '@/assets/TUV.jpg'
+import idler from '@/assets/Idler-Roller.png'
+import liners from '@/assets/liners2.jpg'
+import scaperrange from '@/assets/Scraper-range.png'
+
 
 const route = useRoute()
 
@@ -95,8 +107,8 @@ const sharedFeatures = [
 const productCatalog = {
   'adhesive-systems': {
     title: 'Adhesive Systems',
-    heroImage: chemicalsImage,
-    detailImage: chemicalsImage,
+    heroImage: adhesiveheader,
+    detailImage: adhesives,
     intro: [
       'REMA TIP TOP adhesive systems are available for a wide range of applications using materials developed over many years of scientific research.',
       'Our complete range of tools and bonding systems supports easy, cost-effective bonding and repairs.'
@@ -112,8 +124,8 @@ const productCatalog = {
   },
   automotive: {
     title: 'Automotive',
-    heroImage: automotiveImage,
-    detailImage: automotiveImage,
+    heroImage: automotive,
+    detailImage: automotive,
     intro: [
       'REMA TIP TOP offers the Automotive sector a unique and comprehensive program consisting of customer-oriented services.'
     ],
@@ -128,8 +140,8 @@ const productCatalog = {
   },
   'belt-cleaning': {
     title: 'Belt Cleaning Systems',
-    heroImage: surfaceProtectionImage,
-    detailImage: surfaceProtectionImage,
+    heroImage: scaper,
+    detailImage: scaperrange,
     intro: [
       'REMA TIP TOP belt cleaning products and technologies improve operational efficiency of belt conveyor systems, reduce material losses and prevent premature failure of equipment.'
     ],
@@ -144,8 +156,8 @@ const productCatalog = {
   },
   'belt-splicing-presses': {
     title: 'Belt Splicing Presses',
-    heroImage: processingImage,
-    detailImage: processingImage,
+    heroImage: beltSplicingPresses,
+    detailImage: tuv,
     intro: [
       'REMA TIP TOP has developed a reputation as a high-quality conveyor belt splicing and repair service provider. Our equipment and tools support world-class service teams.'
     ],
@@ -160,8 +172,8 @@ const productCatalog = {
   },
   'belt-splicing-services-materials-tools': {
     title: 'Belt Splicing Services, Materials & Tools',
-    heroImage: processingImage,
-    detailImage: automotiveImage,
+    heroImage: beltSplicingPresses,
+    detailImage: beltSplicingServicesMaterialsTools,
     intro: [
       'REMA TIP TOP products and services increase the longevity and efficiency of belt conveyor systems.',
       'Our service teams are trained in conveyor belt repairs, hot and cold splicing, textile reinforced belting and pulley lagging.'
@@ -192,8 +204,8 @@ const productCatalog = {
   },
   'hand-built-mining-industrial-hose': {
     title: 'Hand Built Mining & Industrial Hose',
-    heroImage: plantImage,
-    detailImage: plantImage,
+    heroImage: hosehwk,
+    detailImage: hosehwk,
     intro: [
       'Our hand-built hose range is developed for demanding mining and industrial applications where durability and reliable performance are essential.'
     ],
@@ -202,8 +214,8 @@ const productCatalog = {
   },
   'idler-systems': {
     title: 'Idler Systems',
-    heroImage: conveyorImage,
-    detailImage: conveyorImage,
+    heroImage: idler,
+    detailImage: idler,
     intro: [
       'REMA TIP TOP offer a complete range of steel, impact and HDPE idler rollers together with standard, self-aligning and suspended conveyor idler frames.'
     ],
@@ -218,8 +230,8 @@ const productCatalog = {
   },
   'mill-liners': {
     title: 'Mill Liners',
-    heroImage: miningImage,
-    detailImage: miningImage,
+    heroImage: MaterialProcessingImage,
+    detailImage: liners,
     intro: [
       'REMA TIP TOP provides high-quality mill liners manufactured from carefully selected materials to suit demanding mineral processing requirements.'
     ],
@@ -234,8 +246,8 @@ const productCatalog = {
   },
   'pulley-lagging': {
     title: 'Pulley Lagging',
-    heroImage: cementImage,
-    detailImage: cementImage,
+    heroImage: pulleylagging,
+    detailImage: pulleylagging,
     intro: [
       'REMA TIP TOP has an extensive range of pulley lagging that can be efficiently applied to conveyor pulleys using cold bonding processes.'
     ],
@@ -248,15 +260,29 @@ const productCatalog = {
       'Reduced belt tension'
     ]
   },
-  'technical-advisory': {
-    title: 'Technical Advisory',
-    heroImage: plantImage,
-    detailImage: plantImage,
+  'surface-protection': {
+    title: 'Surface Protection',
+    heroImage: surfaceProtectionImage,
+    detailImage: surfaceProtectionImage,
     intro: [
-      'Our technical advisory service provides practical support for product selection, installation, maintenance and system improvement.'
+      'REMA TIP TOP offers comprehensive surface protection solutions designed to extend the life of your equipment and improve operational efficiency.'
     ],
-    sectionTitle: 'Service Benefits',
-    features: sharedFeatures
+    sectionTitle: 'Product Lines',
+    features: [
+      'Corrosion protection rubber lining materials',
+      'Rubber sheeting',
+      'Fluoropolymer linings',
+      'Coatings',
+      'Glass flake systems',
+      'Brick & Tile linings',
+      'Anti-caking',
+      'Combination linings',
+      'Adhesives',
+      'Impact, wear plates and bars',
+      'Skirting systems',
+      'Moulded rubber & ceramics'
+
+    ]
   },
   'rema-tip-top-academy': {
     title: 'Rema Tip Top Academy',
@@ -292,7 +318,7 @@ const product = computed(
 <style scoped>
 .product-detail__hero {
   position: relative;
-  height: clamp(220px, 30vw, 360px);
+  height: clamp(430px, 30vw, 360px);
   overflow: hidden;
 }
 

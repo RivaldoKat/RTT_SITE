@@ -316,7 +316,7 @@ const productLinks = [
   { label: 'Idler Systems', to: '/products/idler-systems' },
   { label: 'Mill Liners', to: '/products/mill-liners' },
   { label: 'Pulley Lagging', to: '/products/pulley-lagging' },
-  { label: 'Technical Advisory', to: '/products/technical-advisory' },
+  { label: 'Surface Protection', to: '/products/surface-protection' },
   { label: 'Rema Tip Top Academy', to: '/products/rema-tip-top-academy' }
 ]
 
