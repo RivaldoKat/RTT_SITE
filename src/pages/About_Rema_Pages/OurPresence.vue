@@ -1,68 +1,115 @@
 <template>
-  
-  <div class="main-layout-container global-corporate-font q-mx-auto q-pa-md">
-    
-    <div class="column items-center style-container" style="max-width: 100%; width: 1200px;">
-      
-      <!-- Top Content Section -->
-      <div class="q-mb-md" q-mx-auto q-pa-md>
-        <div class="text-h5 text-weight-bold text-dark">
-          Our Presence
+  <CorporatePageShell>
+    <div class="global-corporate-font">
+      <CorporateSectionHeading title="Our Presence" />
+      <section class="presence-intro">
+        <div>
+          <div class="section-kicker">Local expertise, global reach</div>
+          <h1>Connected to industry in 176+ countries.</h1>
+          <p
+            >Rema Tip Top combines international engineering knowledge with
+            trained local service teams, so support is close to the operation
+            wherever it is needed.</p
+          >
         </div>
-        
-        <div class="dotted-separator q-mb-md" style="border-bottom: 4.6px dotted #b71c1c; width: 100%;"></div>
-        
-        <div class="text-weight-light text-grey-8 text-body2 q-mb-md">
-          <p class="q-mb-sm">
-            Rema Tip Top have branches in many African countries. Fully trained local, professional service providers are stationed at these branches to ensure that you are provided the best products and receive quality after sales service.
-          </p>
-        </div>
-        
-        <div class="text-italic text-negative text-subtitle2">
-          Hover or tap on any flashing circle for more info.
-        </div>
+        <div class="presence-stat"
+          ><strong>176+</strong
+          ><span>countries connected through the global network</span></div
+        >
+      </section>
+      <p class="text-italic text-negative text-subtitle2 q-mb-xl"
+        >Hover or tap on any flashing circle for more info.</p
+      >
+      <div class="map-wrapper">
+        <img :src="mapImage" alt="Rema Tip Top Presence Map" />
       </div>
-
-      <!-- Centered Map Container restricted by viewport boundaries to stop it from cropping or stretching -->
-      <div class="map-wrapper flex flex-center" style="width: 100%; max-height: 65vh; position: relative;">
-        <img 
-          src="src/assets/map.jpg" 
-          alt="Rema Tip Top Presence Map" 
-          class="q-mx-auto"
-          style="max-width: 100%; max-height: 65vh; object-fit: contain; display: block;"
-        />
-      </div>
-
-      <div class="row flex-center corporate-banner text-white q-py-sm text-weight-bold">
-        GERMAN ENGINEERING / MADE IN AFRICA / FOR AFRICA
-      </div>
-
+      <CorporateBanner class="q-mt-xl" />
     </div>
-
-  </div>
-  
+  </CorporatePageShell>
 </template>
 
-<style scoped>
+<script setup>
+import CorporateBanner from '@/components/CorporateBanner.vue'
+import CorporatePageShell from '@/components/CorporatePageShell.vue'
+import CorporateSectionHeading from '@/components/CorporateSectionHeading.vue'
+import mapImage from '@/assets/map.jpg'
+</script>
 
-.corporate-banner {
-  background-color: #ff2a2a; /* Vibrant corporate red color matching the image */
-  font-family: 'Montserrat', sans-serif; /* High-impact heading typography */
-  font-size: 1.85rem;
-  letter-spacing: 0.05em; /* Cleaner international reading rhythm for uppercase letters */
+<style scoped>
+.map-wrapper {
+  display: flex;
+  justify-content: center;
   width: 100%;
-  text-align: center;
+  padding: 1rem;
+  background: #f3f5f4;
+  border: 1px solid #e4e8e8;
+}
+
+.map-wrapper img {
+  display: block;
+  width: 100%;
+  max-height: 65vh;
+  object-fit: contain;
+}
+
+.presence-intro {
+  display: grid;
+  grid-template-columns: 1.5fr 0.8fr;
+  gap: 2rem;
+  align-items: end;
+  margin-bottom: 1.5rem;
+}
+
+.section-kicker {
+  margin-bottom: 0.6rem;
+  color: #c5221d;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
-.main-layout-container {
-  width: 100%;
-  max-width: 1200px;
+.presence-intro h1 {
+  max-width: 680px;
+  margin: 0;
+  color: #17242c;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(2rem, 4vw, 3.3rem);
+  line-height: 1.04;
 }
 
-.global-corporate-font {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
+.presence-intro p {
+  max-width: 680px;
+  line-height: 1.6;
 }
 
+.presence-stat {
+  padding: 1.5rem;
+  border-left: 4px solid #ed3028;
+  background: #f3f5f4;
+}
+
+.presence-stat strong,
+.presence-stat span {
+  display: block;
+}
+
+.presence-stat strong {
+  color: #17242c;
+  font-size: 2.4rem;
+  line-height: 1;
+}
+
+.presence-stat span {
+  margin-top: 0.5rem;
+  color: #68757d;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+@media (max-width: 767px) {
+  .presence-intro {
+    grid-template-columns: 1fr;
+  }
+}
 </style>
