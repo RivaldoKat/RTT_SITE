@@ -22,7 +22,7 @@
 
       <section class="contact-office corporate-surface">
         <div>
-          <div class="contact-kicker">Selected office</div>
+          <div class="contact-kicker">Selected Branch details</div>
           <h1>{{ selectedRegion.name }}</h1>
         </div>
         <div class="contact-office__details">
