@@ -23,6 +23,16 @@
       <div class="map-wrapper">
         <img :src="mapImage" alt="Rema Tip Top Presence Map" />
       </div>
+      <div class="presence-branches-link">
+        <q-btn
+          color="negative"
+          unelevated
+          no-caps
+          icon="place"
+          label="Explore African branches"
+          to="/branch"
+        />
+      </div>
       <CorporateBanner class="q-mt-xl" />
     </div>
   </CorporatePageShell>
@@ -107,9 +117,23 @@ import mapImage from '@/assets/map.jpg'
   line-height: 1.4;
 }
 
+.presence-branches-link {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
 @media (max-width: 767px) {
   .presence-intro {
     grid-template-columns: 1fr;
+  }
+
+  .presence-branches-link {
+    justify-content: stretch;
+  }
+
+  .presence-branches-link .q-btn {
+    width: 100%;
   }
 }
 </style>

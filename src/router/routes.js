@@ -1,3 +1,5 @@
+const branchNetworkPage = () => import('@/pages/BranchPlaceholderPage.vue')
+
 const routes = [
   {
     path: '/',
@@ -12,7 +14,7 @@ const routes = [
 
       {
         path: 'our-presence',
-        component: () => import('@/pages/About_Rema_Pages/OurPresence.vue')
+        component: branchNetworkPage
       },
 
       {
@@ -35,6 +37,10 @@ const routes = [
       {
         path: 'products/:type',
         component: () => import('@/pages/ProductPlaceholderPage.vue')
+      },
+      {
+        path: 'branch/:slug?',
+        component: branchNetworkPage
       }
     ]
   },
