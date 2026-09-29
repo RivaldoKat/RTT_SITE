@@ -23,7 +23,7 @@
       <section class="contact-office corporate-surface">
         <div>
           <div class="contact-kicker">Selected office</div>
-          <h1>{{ selectedRegion.name }} Head Office</h1>
+          <h1>{{ selectedRegion.name }}</h1>
         </div>
         <div class="contact-office__details">
           <span>{{ selectedRegion.address }}</span>
@@ -36,11 +36,13 @@
 
       <section class="contact-workspace">
         <div class="contact-map">
-          <div
-            ref="mapElement"
+          <iframe
             class="contact-map__canvas"
-            role="application"
-            :aria-label="`${selectedRegion.name} office location map`"
+            :src="mapEmbedUrl"
+            :title="`${selectedRegion.name} office location map`"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
           />
           <div class="contact-map__badge">
             <q-icon name="location_on" size="20px" />
@@ -146,92 +148,89 @@
 </template>
 
 <script setup>
-import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
-import L from 'leaflet'
-import 'leaflet/dist/leaflet.css'
+import { computed, ref } from 'vue'
 import CorporateBanner from '@/components/CorporateBanner.vue'
 import CorporateSectionHeading from '@/components/CorporateSectionHeading.vue'
 
-const contactRecipient = 'rivaldos@rtt-dunlop.co.za'
-
 const regions = [
   {
-    name: 'South Africa',
+    name: 'Rema Tip Top South Africa',
     office: 'Benoni',
     address: 'Corner Edinburgh (No.1) & Van Dyk Road, Benoni, 1501',
     phone: '+27 10 880 4744',
     email: 'enquiries@rematiptop.co.za',
-    latitude: -26.1885,
-    longitude: 28.3208
+    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d638.0086457647536!2d28.29052203241092!3d-26.220347527761618!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sza!4v1790603121093!5m2!1sen!2sza'
   },
   {
-    name: 'Eswatini',
-    office: 'Mbabane',
-    address: 'REMA TIP TOP regional service office',
-    phone: '+27 10 880 4744',
+    name: 'Rema Tip Top Howick',
+    office: 'Howick',
+    address: 'Induna Mills Road, Howick, 3290',
+    phone: '+27 33 239 7200',
     email: 'enquiries@rematiptop.co.za',
-    latitude: -26.3054,
-    longitude: 31.1367
+    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d322.37322285270784!2d30.23480214903139!3d-29.48663448246175!2m3!1f138.4192171389182!2f44.991082095770786!3f0!3m2!1i1024!2i768!4f35!3m3!1m2!1s0x1ef6a926138e5037%3A0xf2e019e09fa53cb9!2sDunlop%20Africa%20Ltd!5e1!3m2!1sen!2sza!4v1790668967602!5m2!1sen!2sza'
   },
   {
-    name: 'Ghana',
+    name: 'Rema Tip Top DRC',
+    office: 'Kinshasa',
+    address: 'Unnamed Road, Kipushi, Congo - Kinshasa',
+    phone: '+243 97 952 3596',
+    email: 'enquiries@rematiptop.co.za',
+    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6026.840898491919!2d27.241781!3d-11.756732!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19721f7f313539b1%3A0x352c75c107029d2e!2sREMA%20TIP%20TOP%20DRC%20SERVICES%20SARL!5e1!3m2!1sen!2sza!4v1790668494443!5m2!1sen!2sza' 
+    },
+  {
+    name: 'Rema Tip Top Ghana',
     office: 'Accra',
-    address: 'REMA TIP TOP regional service office',
-    phone: '+27 10 880 4744',
+    address: 'Capital Place, Patrice Lumumba St, Accra, Ghana',
+    phone: '+233 20 311 2012',
     email: 'enquiries@rematiptop.co.za',
-    latitude: 5.6037,
-    longitude: -0.187
-  },
+    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m17!1m11!1m3!1d196.90855627004595!2d-0.18811327376874115!3d5.6008277463809275!2m2!1f198.54977280938127!2f0!3m2!1i1024!2i768!4f45.90244244181053!3m3!1m2!1s0xfdf9b441177deff%3A0x5e9ba017f163c4ad!2sREMA%20TIP%20TOP%20BELTING%20%26%20RUBBER%20GHANA%20LTD.!5e1!3m2!1sen!2sza!4v1790605190989!5m2!1sen!2sza' 
+    },
   {
-    name: 'Madagascar',
+    name: 'Rema Tip Top Madagascar',
     office: 'Antananarivo',
-    address: 'REMA TIP TOP regional service office',
-    phone: '+27 10 880 4744',
+    address: 'R95C+XR5, Toamasina 501, Madagascar',
+    phone: '+261 32 070 7996',
     email: 'enquiries@rematiptop.co.za',
-    latitude: -18.8792,
-    longitude: 47.5079
+    mapEmbedUrl: '//www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d797.0551599210813!2d49.37140347061478!3d-18.1900353934551!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x21f4ffa970001ebf%3A0x2a57a7daec7c74b!2sREMA%20TIP%20TOP!5e1!3m2!1sen!2sza!4v1790667657461!5m2!1sen!2sza'
   },
   {
-    name: 'Mauritius',
+    name: 'Rema Tip Top Mauritius',
     office: 'Port Louis',
-    address: 'REMA TIP TOP regional service office',
-    phone: '+27 10 880 4744',
+    address: 'XHRX+M3P, Twenty-Foot Rd, Grand Baie, Mauritius',
+    phone: '+230 52 53 4545',
     email: 'enquiries@rematiptop.co.za',
-    latitude: -20.1609,
-    longitude: 57.5012
+    mapEmbedUrl:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d797.0445482257252!2d57.5969890719929!3d-20.008259516156524!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x217dabab4f3cf14f%3A0x236972db4b15c1ff!2sLes%20Villas%20Intemporelles!5e1!3m2!1sen!2sza!4v1790670658061!5m2!1sen!2sza'
   },
   {
-    name: 'Mozambique',
+    name: 'Rema Tip Top Mozambique',
     office: 'Maputo',
-    address: 'REMA TIP TOP regional service office',
-    phone: '+27 10 880 4744',
+    address: '3C44+8V2, Mozambique',
+    phone: '+258 84 314 0775',
     email: 'enquiries@rematiptop.co.za',
-    latitude: -25.9692,
-    longitude: 32.5732
+    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d797.5384883694376!2d32.40686526946228!3d-25.94423543080905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ee689438b60a6c1%3A0x8e64ee8c67431c58!2sRema%20Tip%20Top!5e1!3m2!1sen!2sza!4v1790670784138!5m2!1sen!2sza'
   },
   {
-    name: 'Zambia',
-    office: 'Lusaka',
-    address: 'REMA TIP TOP regional service office',
-    phone: '+27 10 880 4744',
+    name: 'Rema Tip Top Zambia',
+    office: 'Kitwe',
+    address: '3665A Chibuluma Rd, Kitwe 00000, Zambia',
+    phone: '+260 96 347 4777',
     email: 'enquiries@rematiptop.co.za',
-    latitude: -15.3875,
-    longitude: 28.3228
+    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d797.5986990482953!2d28.200808316163794!3d-12.80248956498966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x196ce5b78cba155d%3A0x456511334d334c64!2sRema%20Tip%20Top%20Zambia!5e1!3m2!1sen!2sza!4v1790671066491!5m2!1sen!2sza'
   },
   {
-    name: 'Zimbabwe',
+    name: 'Rema Tip Top Zimbabwe',
     office: 'Harare',
-    address: 'REMA TIP TOP regional service office',
-    phone: '+27 10 880 4744',
+    address: '145 Kwame Nkrumah Avenue, Harare, Zimbabwe',
+    phone: '+263 24 70 7038',
     email: 'enquiries@rematiptop.co.za',
-    latitude: -17.8252,
-    longitude: 31.0335
+    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d796.9016505953912!2d31.0578277!3d-17.8261051!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1931a4de0aab7bef%3A0x79d2e2ce1ff0ede3!2s145%20Kwame%20Nkrumah%20Avenue%2C%20Harare%2C%20Zimbabwe!5e1!3m2!1sen!2sza!4v1790671171592!5m2!1sen!2sza'
   }
 ]
 
 const countries = [
   'South Africa',
-  'Eswatini',
+  'Howick',
+  'DRC',
   'Ghana',
   'Madagascar',
   'Mauritius',
@@ -248,55 +247,21 @@ const businessUnits = [
   'Technical Advisory'
 ]
 const selectedRegion = ref(regions[0])
-const mapElement = ref(null)
-let mapInstance
-let officeMarker
+const contactRecipient = computed(
+  () => selectedRegion.value.email || 'rivaldos@rtt-dunlop.co.za'
+)
+const mapEmbedUrl = computed(() => {
+  const region = selectedRegion.value
+  if (region.mapEmbedUrl) return region.mapEmbedUrl
 
+  const location = encodeURIComponent(`${region.office}, ${region.name}`)
+  return `https://maps.google.com/maps?q=${location}&output=embed`
+})
 const mapUrl = computed(() => {
-  const { latitude, longitude } = selectedRegion.value
-  const padding = 0.08
-  return `https://www.openstreetmap.org/export/embed.html?bbox=${longitude - padding}%2C${latitude - padding}%2C${longitude + padding}%2C${latitude + padding}&layer=mapnik&marker=${latitude}%2C${longitude}`
-})
-
-function updateMap(region) {
-  if (!mapInstance) return
-
-  const coordinates = [region.latitude, region.longitude]
-  mapInstance.setView(coordinates, 13)
-  officeMarker.setLatLng(coordinates)
-  officeMarker.bindPopup(
-    `<strong>${region.office}</strong><br>${region.address}`
+  const location = encodeURIComponent(
+    `${selectedRegion.value.office}, ${selectedRegion.value.name}`
   )
-}
-
-onMounted(() => {
-  const initialCoordinates = [
-    selectedRegion.value.latitude,
-    selectedRegion.value.longitude
-  ]
-  mapInstance = L.map(mapElement.value, { scrollWheelZoom: false }).setView(
-    initialCoordinates,
-    13
-  )
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors',
-    maxZoom: 19
-  }).addTo(mapInstance)
-  officeMarker = L.circleMarker(initialCoordinates, {
-    radius: 9,
-    color: '#ffffff',
-    weight: 3,
-    fillColor: '#ed3028',
-    fillOpacity: 1
-  }).addTo(mapInstance)
-  updateMap(selectedRegion.value)
-  window.setTimeout(() => mapInstance?.invalidateSize(), 0)
-})
-
-watch(selectedRegion, region => updateMap(region))
-
-onBeforeUnmount(() => {
-  mapInstance?.remove()
+  return `https://www.google.com/maps/search/?api=1&query=${location}`
 })
 const form = ref({
   email: '',
@@ -322,7 +287,7 @@ function submitForm() {
     form.value.message || 'No message provided'
   ].join('\n')
 
-  window.location.href = `mailto:${contactRecipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+  window.location.href = `mailto:${contactRecipient.value}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
   submitted.value = true
 }
 </script>
